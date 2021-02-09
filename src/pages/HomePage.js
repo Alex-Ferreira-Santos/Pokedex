@@ -1,40 +1,22 @@
-import React,{useEffect,useState} from 'react';
-import {View,Text,FlatList,SafeAreaView} from 'react-native'
+import React,{Component} from 'react';
+import {View,Text,Image,TouchableHighlight} from 'react-native'
+import styles from '../styles/home'
+import pikachu from '../img/pikachu.png'
+import pokedex from '../img/Pokedex.png'
 
-function HomePage(){
-
-  const [pokemons,setPokemons] = useState([])
-  
-  useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon',{
-      method:'GET',
-      headers:{
-        'Accept': 'application/json'
-      }
-    }).then(response => response.json())
-    .then(data => {
-      setPokemons(data.results)
-    })
-  },[])
- 
-    return (
-      <SafeAreaView>
-        <FlatList
-          data={pokemons}
-          keyExtractor={(pokemon) => pokemon.name}
-          contentContainerStyle={{flexGrow:1}}
-          renderItem={PokemonShow}
-        />
-      </SafeAreaView>
-    )
-}
-
-function PokemonShow(pokemon) {
-  return (
-    <View style={{width: 100,height:100,backgroundColor:'orange'}}>
-      <Text>{pokemon.item.name}</Text>
-    </View>
-  )
+class HomePage extends Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <Image source={pokedex}/>
+                <Text style={styles.text}>Veja os dados de seus pokémons favoritos</Text>
+                <Image source={pikachu} style={styles.img}/>
+                <TouchableHighlight style={styles.button} onPress={()=>{this.props.navigation.navigate('Main')}} underlayColor='#B9AC36'>
+                    <Text style={styles.buttonText}>Seguir</Text>
+                </TouchableHighlight>
+            </View>
+        )
+    }
 }
 
 export default HomePage

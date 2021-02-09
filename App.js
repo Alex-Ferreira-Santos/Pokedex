@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
-import {HomePage} from './src/pages/HomePage'
+import Main from './src/pages/Main'
+import HomePage from './src/pages/HomePage'
 
 const Stack = createStackNavigator()
 
@@ -10,7 +11,8 @@ class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='Home' component={HomePage}/>
+        <Stack.Screen name='Home' component={HomePage} options={{headerShown: false}}/>
+          <Stack.Screen name='Main' component={Main}/>
         </Stack.Navigator>
       </NavigationContainer>
     )
