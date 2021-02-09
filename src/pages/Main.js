@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
-import {View,Text,FlatList,SafeAreaView} from 'react-native'
+import {View,Text,FlatList,SafeAreaView,ScrollView} from 'react-native'
 import Pokemon from '../components/Pokemon'
+import styles from '../styles/main'
 
 function Main(){
 
@@ -19,9 +20,10 @@ function Main(){
   },[])
  
     return (
-        <View style={styles.container}>
-        <Text>Bulbassaur</Text>
-        <Pokemon/>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainerStyle}>
+            <Pokemon/>
+            <Pokemon/>
+            <Pokemon/>
         {/*<SafeAreaView>
         <FlatList
           data={pokemons}
@@ -30,7 +32,7 @@ function Main(){
           renderItem={PokemonShow}
         />
         </SafeAreaView>*/}
-        </View>
+        </ScrollView>
     )
 }
 
