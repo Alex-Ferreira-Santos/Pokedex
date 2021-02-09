@@ -20,19 +20,31 @@ function Main(){
   },[])
  
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainerStyle}>
-            <Pokemon/>
-            <Pokemon/>
-            <Pokemon/>
-        {/*<SafeAreaView>
-        <FlatList
-          data={pokemons}
-          keyExtractor={(pokemon) => pokemon.name}
-          contentContainerStyle={{flexGrow:1}}
-          renderItem={PokemonShow}
-        />
-        </SafeAreaView>*/}
-        </ScrollView>
+        <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+                <View style={{flexDirection:'row'}}>
+                   <Pokemon name={'Bulbassauro'} id={1} elementos={['Grama','Veneno']}/>
+                    <Pokemon name={'Ivysauro'} id={2} elementos={['Grama','Veneno']}/> 
+                </View>
+                <View style={{flexDirection:'row'}}>
+                    <Pokemon name={'Venosauro'} id={3} elementos={['Grama','Veneno']}/>
+                    <Pokemon name={'Charmander'} id={4} elementos={['Fogo']}/>
+                </View>
+                <View style={{flexDirection:'row'}}>
+                    <Pokemon name={'Charmeleon'} id={5} elementos={['Fogo']}/>
+                    <Pokemon name={'Charizard'} id={6} elementos={['Fogo','Voador']}/>
+                </View>
+                
+            {/*<SafeAreaView>
+            <FlatList
+            data={pokemons}
+            keyExtractor={(pokemon) => pokemon.name}
+            contentContainerStyle={{flexGrow:1}}
+            renderItem={PokemonShow}
+            />
+            </SafeAreaView>*/}
+            </ScrollView>
+        </View>
     )
 }
 

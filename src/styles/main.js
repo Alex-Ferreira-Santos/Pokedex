@@ -2,12 +2,12 @@ import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#303030',
+        flex:1,
         
     },
     contentContainerStyle:{
-        flex:1,
         alignItems: 'center',
+        backgroundColor: '#303030',
     }
 })
 

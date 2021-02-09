@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
         paddingVertical: 10
     },
     name:{
-        fontSize: 25
+        fontSize: 25,
+        marginBottom: 5
     },
     element:{
         borderRadius: 10,
@@ -24,13 +25,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '100%'
-    }, grass:{
+    }, 
+    img:{
+        width: 150,
+        height: 150
+    },grass:{
         backgroundColor:'#1A771E',
         color: '#36CE1D',
     },
     poison:{
         backgroundColor:'#8722D7',
         color: '#C6A4E0'
+    },
+    fire:{
+        backgroundColor:'#DE5234',
+        color:'#FBC2A2'
+    },
+    flying:{
+        backgroundColor:'#BAD9D3',
+        color:'#5BA497'
     }
 })
 
