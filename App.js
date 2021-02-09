@@ -1,41 +1,21 @@
-import React,{useEffect,useState} from 'react';
-import {View,Text,FlatList,SafeAreaView} from 'react-native'
+import React,{Component} from 'react';
+import {NavigationContainer} from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack'
+import {HomePage} from './src/pages/HomePage'
 
-function App(){
+const Stack = createStackNavigator()
 
-  const [pokemons,setPokemons] = useState([])
-  
-  useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon',{
-      method:'GET',
-      headers:{
-        'Accept': 'application/json'
-      }
-    }).then(response => response.json())
-    .then(data => {
-      setPokemons(data.results)
-    })
-  },[])
- 
+class App extends Component {
+  render(){
     return (
-      <SafeAreaView>
-        <FlatList
-          data={pokemons}
-          keyExtractor={(pokemon) => pokemon.name}
-          contentContainerStyle={{flexGrow:1}}
-          renderItem={PokemonShow}
-        />
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Home' component={HomePage}/>
+        </Stack.Navigator>
+      </NavigationContainer>
     )
+  }
 }
 
-function PokemonShow(pokemon) {
-  console.log(pokemon)
-  return (
-    <View style={{width: 100,height:100,backgroundColor:'orange'}}>
-      <Text>{pokemon.item.name}</Text>
-    </View>
-  )
-}
 
 export default App
