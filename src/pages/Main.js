@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {View,Text,FlatList,SafeAreaView} from 'react-native'
+import Pokemon from '../components/Pokemon'
 
 function Main(){
 
@@ -18,14 +19,18 @@ function Main(){
   },[])
  
     return (
-      <SafeAreaView>
+        <View style={styles.container}>
+        <Text>Bulbassaur</Text>
+        <Pokemon/>
+        {/*<SafeAreaView>
         <FlatList
           data={pokemons}
           keyExtractor={(pokemon) => pokemon.name}
           contentContainerStyle={{flexGrow:1}}
           renderItem={PokemonShow}
         />
-      </SafeAreaView>
+        </SafeAreaView>*/}
+        </View>
     )
 }
 
@@ -33,6 +38,7 @@ function PokemonShow(pokemon) {
   return (
     <View style={{width: 100,height:100,backgroundColor:'orange'}}>
       <Text>{pokemon.item.name}</Text>
+      <Pokemon/>
     </View>
   )
 }
