@@ -1,35 +1,31 @@
-import React,{useEffect,Component} from 'react';
+import React,{useEffect,useState} from 'react';
 import {View,Text,FlatList,SafeAreaView,ScrollView} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 
-class Main extends Component(){
-  constructor(props){
-    super(props)
-    this.state = {
-      pokemons:[],
-      types:[]
-    }
-  }
+function Main(){
 
-  render(){
+  const [pokemons,setPokemons] = useState([])
+  const [types,setTypes] = useState([])
   
-    useEffect(()=>{
-      fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1',{
-        method:'GET',
-        headers:{
-          'Accept': 'application/json'
-        }
-      }).then(response => response.json())
-      .then(data => {
-        this.state.pokemons = data.results
-      })
-    },[])
-  
+  useEffect(()=>{
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1',{
+      method:'GET',
+      headers:{
+        'Accept': 'application/json'
+      }
+    }).then(response => response.json())
+    .then(data => {
+      setPokemons(data.results)
+    })
+  },[])
+
+    
+    
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                {this.state.pokemons.map(pokemon => {
+                {pokemons.map(pokemon => {
 
                   const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
 
@@ -42,13 +38,13 @@ class Main extends Component(){
                     }).then(response => response.json())
                     .then(data => {
                       const types = data.types.map( pokemon => pokemon.type.name)
-                      this.state.types = types
+                      setTypes(types)
                     })
                  
 
                   return(
                     <View key={pokemonNumber}>
-                      <Pokemon name={pokemon.name} id={pokemonNumber} elementos={this.state.types}/>
+                      <Pokemon name={pokemon.name} id={pokemonNumber} elementos={types}/>
                     </View>
                   )
                 })}
@@ -73,10 +69,9 @@ class Main extends Component(){
             </ScrollView>
         </View>
     )
-  }
 }
 
-{/*function PokemonShow(pokemon) {
+function PokemonShow(pokemon) {
 
   return (
     <View style={{flexDirection:'row'}}>
@@ -84,6 +79,6 @@ class Main extends Component(){
       <Pokemon/>
     </View>
   )
-}*/}
+}
 
 export default Main
