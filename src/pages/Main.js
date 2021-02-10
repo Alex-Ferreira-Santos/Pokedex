@@ -1,31 +1,35 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,Component} from 'react';
 import {View,Text,FlatList,SafeAreaView,ScrollView} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 
-function Main(){
+class Main extends Component(){
+  constructor(props){
+    super(props)
+    this.state = {
+      pokemons:[],
+      types:[]
+    }
+  }
 
-  const [pokemons,setPokemons] = useState([])
-  const [types,setTypes] = useState([])
+  render(){
   
-  useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=3',{
-      method:'GET',
-      headers:{
-        'Accept': 'application/json'
-      }
-    }).then(response => response.json())
-    .then(data => {
-      setPokemons(data.results)
-    })
-  },[])
-
-    
-    
+    useEffect(()=>{
+      fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1',{
+        method:'GET',
+        headers:{
+          'Accept': 'application/json'
+        }
+      }).then(response => response.json())
+      .then(data => {
+        this.state.pokemons = data.results
+      })
+    },[])
+  
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                {pokemons.map(pokemon => {
+                {this.state.pokemons.map(pokemon => {
 
                   const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
 
@@ -38,13 +42,13 @@ function Main(){
                     }).then(response => response.json())
                     .then(data => {
                       const types = data.types.map( pokemon => pokemon.type.name)
-                      setTypes(types)
+                      this.state.types = types
                     })
                  
 
                   return(
                     <View key={pokemonNumber}>
-                      <Pokemon name={pokemon.name} id={pokemonNumber} elementos={types}/>
+                      <Pokemon name={pokemon.name} id={pokemonNumber} elementos={this.state.types}/>
                     </View>
                   )
                 })}
@@ -69,9 +73,10 @@ function Main(){
             </ScrollView>
         </View>
     )
+  }
 }
 
-function PokemonShow(pokemon) {
+{/*function PokemonShow(pokemon) {
 
   return (
     <View style={{flexDirection:'row'}}>
@@ -79,6 +84,6 @@ function PokemonShow(pokemon) {
       <Pokemon/>
     </View>
   )
-}
+}*/}
 
 export default Main
