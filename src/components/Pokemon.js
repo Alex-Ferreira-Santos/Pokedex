@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {View,Text,Image} from 'react-native'
 import styles from '../styles/pokemon'
+import LinearGradient from 'react-native-linear-gradient'
 
 class Pokemon extends Component {
     constructor(props){
@@ -30,6 +31,13 @@ class Pokemon extends Component {
                             case 'Voador':
                                 this.state.elemento = styles.flying
                                 break
+                            case 'Dragon':
+                                this.state.elemento = styles.dragon
+                                return(
+                                    <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}>
+                                        <Text style={[this.state.elemento]} key={elemento}>{elemento}</Text>
+                                    </LinearGradient>
+                                )
                         }
                         return(
                             <Text style={[styles.element,this.state.elemento]} key={elemento}>{elemento}</Text>

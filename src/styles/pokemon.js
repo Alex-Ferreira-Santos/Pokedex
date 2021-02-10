@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         fontSize: 15,
         width: '40%',
-        textAlign: 'center'
+        textAlign: 'center',
+        alignItems: 'center',
     },
    
     elementos:{
@@ -29,7 +30,8 @@ const styles = StyleSheet.create({
     img:{
         width: 150,
         height: 150
-    },grass:{
+    },
+    grass:{
         backgroundColor:'#1A771E',
         color: '#36CE1D',
     },
@@ -44,6 +46,61 @@ const styles = StyleSheet.create({
     flying:{
         backgroundColor:'#BAD9D3',
         color:'#5BA497'
+    },
+    water:{
+        backgroundColor:'#389FCB',
+        color: '#093577'
+    },
+    bug:{
+        backgroundColor:'#BEE963',
+        color: '#647912'
+    },
+    normal:{
+        backgroundColor:'#D7D7D7',
+        color: '#707070'
+    },
+    eletric:{
+        backgroundColor:'#E0DA4D',
+        color: '#747125'
+    },
+    ground:{
+        backgroundColor:'#CBB230',
+        color: '#776922'
+    },
+    fighting:{
+        backgroundColor:'#D86440',
+        color:'#732A01'
+    },
+    psychic:{
+        backgroundColor:'#D6488C',
+        color: '#71183D'
+    },
+    rock:{
+        backgroundColor:'#C7C18B',
+        color: '#696958'
+    },
+    ghost:{
+        backgroundColor:'#4A47C5',
+        color: '#BDC4FF'
+    },
+    ice:{
+        backgroundColor:'#40C9E8',
+        color: '#CFFEF6'
+    },
+    dragon:{
+        color:'#FFDEDE'
+    },
+    steel:{
+        backgroundColor:'#A5A5A5',
+        color: '#595959'
+    },
+    dark:{
+        backgroundColor:'#4D3F36',
+        color: '#A3A3A3'
+    },
+    fairy:{
+        backgroundColor:'#ED83EF',
+        color: '#BB15D6'
     }
 })
 
