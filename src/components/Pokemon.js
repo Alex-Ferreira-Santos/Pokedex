@@ -19,41 +19,55 @@ class Pokemon extends Component {
                 <Text style={styles.name}>{this.props.name}</Text>
                 <View style={styles.elementos}>
                     {this.props.elementos.map((elemento)=>{
+                        console.log(this.state.elemento)
                         switch(elemento){
-                            case 'Grama':
+                            case 'grass':
                                 this.state.elemento = styles.grass
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundGrass
                                 }
+                                
                                 break
-                            case 'Veneno':
+                            case 'poison':
                                 this.state.elemento = styles.poison
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundPoison
                                 }
+                                
                                 break
-                            case 'Fogo':
+                            case 'fire':
                                 this.state.elemento = styles.fire
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundFire
                                 }
+                                
                                 break
-                            case 'Voador':
+                            case 'flying':
                                 this.state.elemento = styles.flying
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundFlying
                                 }
+                                
                                 break
-                            case 'Dragon':
+                            case 'dragon':
                                 this.state.elemento = styles.dragon
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundDragon
                                 }
+                                
                                 return(
                                     <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}>
                                         <Text style={[this.state.elemento]} key={elemento}>{elemento}</Text>
                                     </LinearGradient>
                                 )
+                            case 'water':{
+                                this.state.elemento = styles.water
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundWater
+                                }
+                                
+                                break
+                            }
                         }
                         return(
                             <Text style={[styles.element,this.state.elemento]} key={elemento}>{elemento}</Text>
