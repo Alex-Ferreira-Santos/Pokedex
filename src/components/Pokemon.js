@@ -7,13 +7,14 @@ class Pokemon extends Component {
     constructor(props){
         super(props)
         this.state = {
-            elemento: ''
+            elemento: '',
+            background: '',
         }
     }
     render() {
         const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.props.id}.png`
         return (
-            <View style={styles.container}>
+            <View style={[styles.container,this.state.background]}>
                 <Image source={{uri:imagemUrl}} style={styles.img}/>
                 <Text style={styles.name}>{this.props.name}</Text>
                 <View style={styles.elementos}>
@@ -21,18 +22,33 @@ class Pokemon extends Component {
                         switch(elemento){
                             case 'Grama':
                                 this.state.elemento = styles.grass
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundGrass
+                                }
                                 break
                             case 'Veneno':
                                 this.state.elemento = styles.poison
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundPoison
+                                }
                                 break
                             case 'Fogo':
                                 this.state.elemento = styles.fire
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundFire
+                                }
                                 break
                             case 'Voador':
                                 this.state.elemento = styles.flying
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundFlying
+                                }
                                 break
                             case 'Dragon':
                                 this.state.elemento = styles.dragon
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundDragon
+                                }
                                 return(
                                     <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}>
                                         <Text style={[this.state.elemento]} key={elemento}>{elemento}</Text>

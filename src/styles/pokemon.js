@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#70AC54',
+        backgroundColor:'white',
         width:'45%',
         margin: 10,
         borderRadius: 10,
@@ -101,7 +101,62 @@ const styles = StyleSheet.create({
     fairy:{
         backgroundColor:'#ED83EF',
         color: '#BB15D6'
-    }
+    },
+
+    backgroundGrass:{
+        backgroundColor:'#70AC54'
+    },
+    backgroundPoison:{
+        backgroundColor:'#B682DF'
+    },
+    backgroundFire:{
+        backgroundColor:'#EA8F7B'
+    },
+    backgroundFlying:{
+        backgroundColor:'#ABF1E4'
+    },
+    backgroundWater:{
+        backgroundColor:'#6FC9EF'
+    },
+    backgroundBug:{
+        backgroundColor:'#B0D366'
+    },
+    backgroundNormal:{
+        backgroundColor:'#C4C4C4'
+    },
+    backgroundEletric:{
+        backgroundColor:'#FFF85B'
+    },
+    backgroundGround:{
+        backgroundColor:'#AB9624'
+    },
+    backgroundFighting:{
+        backgroundColor:'#BA4824'
+    },
+    backgroundPsychic:{
+        backgroundColor:'#B11E65'
+    },
+    backgroundRock:{
+        backgroundColor:'#A39D6F'
+    },
+    backgroundGhost:{
+        backgroundColor:'#6C6AD3'
+    },
+    backgroundIce:{
+        backgroundColor:'#72E5FF'
+    },
+    backgroundDragon:{
+        backgroundColor:'#421DAB'
+    },
+    backgroundSteel:{
+        backgroundColor:'#6C6666'
+    },
+    backgroundDark:{
+        backgroundColor:'#7A685D'
+    },
+    backgroundFairy:{
+        backgroundColor:'#FEB5FF'
+    },
 })
 
 export default styles

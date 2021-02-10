@@ -32,7 +32,7 @@ function Main(){
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <Pokemon name={'Charmeleon'} id={5} elementos={['Fogo']}/>
-                    <Pokemon name={'Charizard'} id={6} elementos={['Fogo','Dragon']}/>
+                    <Pokemon name={'Charizard'} id={6} elementos={['Fogo','Voador']}/>
                 </View>
                 
             {/*<SafeAreaView>
