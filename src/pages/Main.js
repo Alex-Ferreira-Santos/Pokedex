@@ -9,7 +9,7 @@ function Main(){
   const [types,setTypes] = useState([])
   
   useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1',{
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=7',{
       method:'GET',
       headers:{
         'Accept': 'application/json'
@@ -18,9 +18,52 @@ function Main(){
     .then(data => {
       setPokemons(data.results)
     })
-  },[])
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
+
+    pokemons.map((pokemon)=>{
+    const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`,{
+          method:'GET',
+          headers:{
+            'Accept': 'application/json'
+          }
+        }).then(response => response.json())
+        .then(data => {
+          const types = data.types.map( pokemon => pokemon.type.name)
+        setTypes(types) 
+      })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },[])
+
+  
     
     return (
         <View style={styles.container}>
@@ -30,17 +73,7 @@ function Main(){
                   const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
 
                   
-                    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`,{
-                      method:'GET',
-                      headers:{
-                        'Accept': 'application/json'
-                      }
-                    }).then(response => response.json())
-                    .then(data => {
-                      const types = data.types.map( pokemon => pokemon.type.name)
-                      setTypes(types)
-                    })
-                 
+        
 
                   return(
                     <View key={pokemonNumber}>
