@@ -14,17 +14,13 @@ class Pokemon extends Component {
         this.carregaPokemon()
     }
 
-    carregaPokemon(){
+    async carregaPokemon(){
         console.log('id: '+this.props.id)
-        fetch(`https://pokeapi.co/api/v2/pokemon/1/`,{
-            method:'GET',
-            headers:{
-                'Accept': 'application/json'
-            }
-            }).then(async response => {
+        await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.id}/`)
+            .then(async response => {
                 console.log('Passou aqui')
-                console.log(response)
-                return await response.json()
+                const dados = await response.json()
+                return dados
             })
             .then(data => {
                 const types = data.types.map( pokemon => pokemon.type.name)
@@ -86,6 +82,20 @@ class Pokemon extends Component {
                                 this.state.elemento = styles.water
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundWater
+                                }
+                                break
+                            }
+                            case 'bug':{
+                                this.state.elemento = styles.bug
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundBug
+                                }
+                                break
+                            }
+                            case 'normal':{
+                                this.state.elemento = styles.normal
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundNormal
                                 }
                                 break
                             }

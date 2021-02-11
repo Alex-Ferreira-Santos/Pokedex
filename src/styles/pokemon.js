@@ -25,8 +25,9 @@ const styles = StyleSheet.create({
    
     elementos:{
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%'
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        width: '90%'
     }, 
     img:{
         width: 150,
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#6FC9EF'
     },
     backgroundBug:{
-        backgroundColor:'#B0D366'
+        backgroundColor:'#93AF56'
     },
     backgroundNormal:{
         backgroundColor:'#C4C4C4'

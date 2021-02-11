@@ -3,12 +3,12 @@ import {View,Text,FlatList,SafeAreaView,ScrollView} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 
-function Main(){
+function Main(){ 
 
   const [pokemons,setPokemons] = useState([])
   
   useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1',{
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=1&limit=10',{
       method:'GET',
       headers:{
         'Accept': 'application/json'
