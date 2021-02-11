@@ -18,7 +18,6 @@ class Main extends Component{
     .then(response => response.json())
     .then(data => {
       this.setPokemons(data.results)
-      console.log('passou aqui')
     })
   }
 
@@ -26,7 +25,6 @@ class Main extends Component{
     this.setState({pokemons: data})
   }
   render(){
-    console.log('length: '+this.state.pokemons.length)
     
     if(this.state.pokemons.length === 0){
       return(
@@ -41,7 +39,6 @@ class Main extends Component{
                 {this.state.pokemons.map(pokemon => {
 
                   const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-                  console.log('PokemonNumber:' + pokemonNumber)
                   return(
                     <View key={pokemonNumber}>
                       <Pokemon name={pokemon.name} id={pokemonNumber}/>
