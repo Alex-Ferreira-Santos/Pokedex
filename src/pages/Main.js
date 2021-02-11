@@ -6,10 +6,9 @@ import styles from '../styles/main'
 function Main(){
 
   const [pokemons,setPokemons] = useState([])
-  const [types,setTypes] = useState([])
   
   useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=7',{
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1',{
       method:'GET',
       headers:{
         'Accept': 'application/json'
@@ -18,66 +17,25 @@ function Main(){
     .then(data => {
       setPokemons(data.results)
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    pokemons.map((pokemon)=>{
-    const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`,{
-          method:'GET',
-          headers:{
-            'Accept': 'application/json'
-          }
-        }).then(response => response.json())
-        .then(data => {
-          const types = data.types.map( pokemon => pokemon.type.name)
-        setTypes(types) 
-      })
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   },[])
-
-  
-    
+    console.log('length: '+pokemons.length)
+    if(pokemons.length === 0){
+      return(
+        <View>
+          <Text>Loading...</Text>
+        </View>
+      )
+    }
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 {pokemons.map(pokemon => {
 
                   const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-
-                  
-        
-
+                  console.log('PokemonNumber:' + pokemonNumber)
                   return(
                     <View key={pokemonNumber}>
-                      <Pokemon name={pokemon.name} id={pokemonNumber} elementos={types}/>
+                      <Pokemon name={pokemon.name} id={pokemonNumber}/>
                     </View>
                   )
                 })}

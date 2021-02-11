@@ -9,8 +9,30 @@ class Pokemon extends Component {
         this.state = {
             elemento: '',
             background: '',
+            tipos: []
         }
+        this.carregaPokemon()
     }
+
+    carregaPokemon(){
+        console.log('id: '+this.props.id)
+        fetch(`https://pokeapi.co/api/v2/pokemon/1/`,{
+            method:'GET',
+            headers:{
+                'Accept': 'application/json'
+            }
+            }).then(async response => {
+                console.log('Passou aqui')
+                console.log(response)
+                return await response.json()
+            })
+            .then(data => {
+                const types = data.types.map( pokemon => pokemon.type.name)
+                this.state.tipos = types
+                console.log('Passou aqui 2')
+        })
+    }
+
     render() {
         const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.props.id}.png`
         return (
@@ -18,8 +40,8 @@ class Pokemon extends Component {
                 <Image source={{uri:imagemUrl}} style={styles.img}/>
                 <Text style={styles.name}>{this.props.name}</Text>
                 <View style={styles.elementos}>
-                    {this.props.elementos.map((elemento)=>{
-                        console.log(this.state.elemento)
+                    {this.state.tipos.map((elemento)=>{
+                        console.log(this.state.tipos)
                         switch(elemento){
                             case 'grass':
                                 this.state.elemento = styles.grass
@@ -65,7 +87,6 @@ class Pokemon extends Component {
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundWater
                                 }
-                                
                                 break
                             }
                         }
