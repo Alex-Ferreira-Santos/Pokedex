@@ -7,17 +7,13 @@ function Main(){
 
   const [pokemons,setPokemons] = useState([])
   
-  useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=1&limit=10',{
-      method:'GET',
-      headers:{
-        'Accept': 'application/json'
-      }
-    }).then(response => response.json())
+  
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=10&limit=20')
+    .then(response => response.json())
     .then(data => {
       setPokemons(data.results)
     })
-  },[])
+  
     console.log('length: '+pokemons.length)
     if(pokemons.length === 0){
       return(

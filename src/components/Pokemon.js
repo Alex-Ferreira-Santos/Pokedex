@@ -15,17 +15,17 @@ class Pokemon extends Component {
     }
 
     async carregaPokemon(){
-        console.log('id: '+this.props.id)
+        //console.log('id: '+this.props.id)
         await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.id}/`)
             .then(async response => {
-                console.log('Passou aqui')
+                //console.log('Passou aqui')
                 const dados = await response.json()
                 return dados
             })
             .then(data => {
                 const types = data.types.map( pokemon => pokemon.type.name)
                 this.state.tipos = types
-                console.log('Passou aqui 2')
+                //console.log('Passou aqui 2')
         })
     }
 
@@ -37,7 +37,6 @@ class Pokemon extends Component {
                 <Text style={styles.name}>{this.props.name}</Text>
                 <View style={styles.elementos}>
                     {this.state.tipos.map((elemento)=>{
-                        console.log(this.state.tipos)
                         switch(elemento){
                             case 'grass':
                                 this.state.elemento = styles.grass
@@ -96,6 +95,20 @@ class Pokemon extends Component {
                                 this.state.elemento = styles.normal
                                 if(this.state.background === ''){
                                     this.state.background = styles.backgroundNormal
+                                }
+                                break
+                            }
+                            case 'electric':{
+                                this.state.elemento = styles.eletric
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundEletric
+                                }
+                                break
+                            }
+                            case 'ground':{
+                                this.state.elemento = styles.ground
+                                if(this.state.background === ''){
+                                    this.state.background = styles.backgroundGround
                                 }
                                 break
                             }
