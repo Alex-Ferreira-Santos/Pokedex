@@ -14,7 +14,7 @@ class Main extends Component{
   }
   
   carregaPokemons(){
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=10&limit=20')
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20')
     .then(response => response.json())
     .then(data => {
       this.setPokemons(data.results)
