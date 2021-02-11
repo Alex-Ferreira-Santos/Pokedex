@@ -1,21 +1,34 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,Component} from 'react';
 import {View,Text,FlatList,SafeAreaView,ScrollView} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 
-function Main(){ 
-
-  const [pokemons,setPokemons] = useState([])
+class Main extends Component{ 
+  constructor(props){
+    super(props)
+    this.state = {
+      pokemons:[]
+    }
+    this.carregaPokemons()
+    this.setPokemons = this.setPokemons.bind(this)
+  }
   
-  
+  carregaPokemons(){
     fetch('https://pokeapi.co/api/v2/pokemon?offset=10&limit=20')
     .then(response => response.json())
     .then(data => {
-      setPokemons(data.results)
+      this.setPokemons(data.results)
+      console.log('passou aqui')
     })
-  
-    console.log('length: '+pokemons.length)
-    if(pokemons.length === 0){
+  }
+
+  setPokemons(data){
+    this.setState({pokemons: data})
+  }
+  render(){
+    console.log('length: '+this.state.pokemons.length)
+    
+    if(this.state.pokemons.length === 0){
       return(
         <View>
           <Text>Loading...</Text>
@@ -25,7 +38,7 @@ function Main(){
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                {pokemons.map(pokemon => {
+                {this.state.pokemons.map(pokemon => {
 
                   const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
                   console.log('PokemonNumber:' + pokemonNumber)
@@ -56,6 +69,8 @@ function Main(){
             </ScrollView>
         </View>
     )
+  }
+
 }
 
 function PokemonShow(pokemon) {
