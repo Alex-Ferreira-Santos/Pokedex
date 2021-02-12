@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     }, 
     img:{
         width: 150,
-        height: 150
+        height: 150,
+        marginLeft: 20,
     },
     grass:{
         backgroundColor:'#1A771E',
