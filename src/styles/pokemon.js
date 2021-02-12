@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#72E5FF'
     },
     backgroundDragon:{
-        backgroundColor:'#421DAB'
+        backgroundColor:'#4845B1'
     },
     backgroundSteel:{
         backgroundColor:'#6C6666'

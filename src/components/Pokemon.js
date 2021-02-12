@@ -32,43 +32,57 @@ class Pokemon extends Component {
             case 'grass':
                 this.setState({background:styles.backgroundGrass})
                 break
-
             case 'poison':
                 this.setState({background:styles.backgroundPoison})
                 break
-
             case 'fire':
                 this.setState({background:styles.backgroundFire})
                 break
-
             case 'flying':
                 this.setState({background:styles.backgroundFlying})       
                 break
-
             case 'dragon':
                 this.setState({background:styles.backgroundDragon})
                 break
-
             case 'water':                  
                 this.setState({background:styles.backgroundWater})                
                 break   
-
             case 'bug':
                 this.setState({background:styles.backgroundBug})
-                break
-                  
+                break        
             case 'normal':
                 this.setState({background:styles.backgroundNormal})
-                break
-                    
+                break            
             case 'electric':
                 this.setState({background:styles.backgroundEletric})
-                break
-                            
+                break                  
             case 'ground':
                 this.setState({background:styles.backgroundGround})
                 break
-                            
+            case 'fairy':
+                this.setState({background:styles.backgroundFairy})
+                break 
+            case 'fighting':
+                this.setState({background:styles.backgroundFighting})
+                break
+            case 'psychic':
+                this.setState({background:styles.backgroundPsychic})
+                break       
+            case 'rock':
+                this.setState({background:styles.backgroundRock})
+                break       
+            case 'ice':
+                this.setState({background:styles.backgroundIce})
+                break 
+            case 'ghost':
+                this.setState({background:styles.backgroundGhost})
+                break
+            case 'steel':
+                this.setState({background:styles.backgroundSteel})
+                break 
+            case 'dark':
+                this.setState({background:styles.backgroundDark})
+                break  
         }
     }
 
@@ -118,6 +132,38 @@ class Pokemon extends Component {
                             }
                             case 'ground':{
                                 this.state.elemento = styles.ground
+                                break
+                            }
+                            case 'fairy':{
+                                this.state.elemento = styles.fairy
+                                break
+                            }
+                            case 'fighting':{
+                                this.state.elemento = styles.fighting
+                                break
+                            }
+                            case 'psychic':{
+                                this.state.elemento = styles.psychic
+                                break
+                            }
+                            case 'rock':{
+                                this.state.elemento = styles.rock
+                                break
+                            }
+                            case 'ice':{
+                                this.state.elemento = styles.ice
+                                break
+                            }
+                            case 'ghost':{
+                                this.state.elemento = styles.ghost
+                                break
+                            }
+                            case 'steel':{
+                                this.state.elemento = styles.steel
+                                break
+                            }
+                            case 'dark':{
+                                this.state.elemento = styles.dark
                                 break
                             }
                         }
