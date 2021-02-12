@@ -12,7 +12,7 @@ class HomePage extends Component {
                     <Image source={pokedex}/>
                     <Text style={styles.text}>Veja os dados de seus pokémons favoritos</Text>
                     <Image source={pokebola} style={styles.img}/>
-                    <TouchableHighlight style={styles.button} onPress={()=>{this.props.navigation.navigate('Main')}} underlayColor='#B9AC36'>
+                    <TouchableHighlight style={styles.button} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#B9AC36'>
                         <Text style={styles.buttonText}>Seguir</Text>
                     </TouchableHighlight>
                 </View>

@@ -3,8 +3,6 @@ import {View,Text,FlatList,ActivityIndicator} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 
-let inicial = 0
-
 class Main extends Component{ 
   constructor(props){
     super(props)
@@ -21,13 +19,14 @@ class Main extends Component{
     this.carregaPokemons()
   }
   carregaPokemons(){ 
+    const params = this.props.route.params
     this.state.loading = true
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${inicial}&limit=10`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=10`)
     .then(response => response.json())
     .then(data => {
       this.setPokemons(data.results)
     })
-    inicial = inicial + 10
+    params.inicial = params.inicial + 10
     this.state.loading = false
   }
 
@@ -68,15 +67,20 @@ class Main extends Component{
     }
     return (
         <View style={styles.container}>
-          <FlatList
-            data={this.state.pokemons}
-            keyExtractor={(pokemon) => pokemon.name}
-            contentContainerStyle={styles.contentContainerStyle}
-            renderItem={this.PokemonShow}
-            onEndReached={this.carregaPokemons}
-            onEndReachedThreshold={0.2}
-            ListFooterComponent={this.loading}
-            />          
+          <View style={styles.inside}>
+            <View>
+
+            </View>
+            <FlatList
+              data={this.state.pokemons}
+              keyExtractor={(pokemon) => pokemon.name}
+              contentContainerStyle={styles.contentContainerStyle}
+              renderItem={this.PokemonShow}
+              onEndReached={this.carregaPokemons}
+              onEndReachedThreshold={0.1}
+              ListFooterComponent={this.loading}
+              />  
+          </View>        
         </View>
     )
   }

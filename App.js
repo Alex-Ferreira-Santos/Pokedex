@@ -12,7 +12,7 @@ class App extends Component {
       <NavigationContainer>
         <Stack.Navigator>
         <Stack.Screen name='Home' component={HomePage} options={{headerShown: false}}/>
-          <Stack.Screen name='Main' component={Main} options={{headerShown: false}}/>
+          <Stack.Screen name='Main' component={Main} options={{headerShown: false}} initialParams={{inicial:0}}/>
         </Stack.Navigator>
       </NavigationContainer>
     )
