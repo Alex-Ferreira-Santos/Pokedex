@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList,SafeAreaView,ScrollView} from 'react-native'
+import {View,Text,FlatList,ActivityIndicator} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 
@@ -10,19 +10,25 @@ class Main extends Component{
     super(props)
     this.state = {
       pokemons:[],
+      loading: false,
     }
-    this.carregaPokemons()
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
+    this.loading = this.loading.bind(this)
   }
   
+  componentDidMount(){
+    this.carregaPokemons()
+  }
   carregaPokemons(){ 
+    this.state.loading = true
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=${inicial}&limit=10`)
     .then(response => response.json())
     .then(data => {
       this.setPokemons(data.results)
     })
     inicial = inicial + 10
+    this.state.loading = false
   }
 
   setPokemons(data){
@@ -39,12 +45,24 @@ class Main extends Component{
     )
   }
 
+  loading = () => {
+    if(this.state.loading){
+      return null
+    }
+    return(
+      <View style={{flex:1}}>
+        <ActivityIndicator size="large" color="white"/>
+      </View>
+    )
+  }
+
   render(){
     
     if(this.state.pokemons.length === 0){
       return(
         <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:'#303030'}}>
-          <Text style={{fontSize: 50,color:'white'}}>Carregando...</Text>
+          <Text style={{fontSize: 50,color:'white',margin: 20}}>Carregando</Text>
+          <ActivityIndicator size="large" color="white"/>
         </View>
       )
     }
@@ -57,6 +75,7 @@ class Main extends Component{
             renderItem={this.PokemonShow}
             onEndReached={this.carregaPokemons}
             onEndReachedThreshold={0.2}
+            ListFooterComponent={this.loading}
             />          
         </View>
     )
