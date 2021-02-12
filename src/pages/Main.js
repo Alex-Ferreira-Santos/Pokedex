@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {View,Text,FlatList,ActivityIndicator} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
+import RNPickerSelect from 'react-native-picker-select'
+import pickerSelectStyles from '../styles/pickerSelectStyle'
 
 class Main extends Component{ 
   constructor(props){
@@ -9,6 +11,7 @@ class Main extends Component{
     this.state = {
       pokemons:[],
       loading: false,
+      elemento: ''
     }
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
@@ -68,8 +71,37 @@ class Main extends Component{
     return (
         <View style={styles.container}>
           <View style={styles.inside}>
-            <View>
-
+            <View style={styles.section}>
+              <RNPickerSelect
+                useNativeAndroidPickerStyle={false}
+                placeholder={{
+                    label: 'Selecione o elemento para filtrar os pokémons',
+                    value: null,
+                    color: '#9EA0A4',
+                }}
+                onValueChange={(value)=>{
+                    this.setState({elemento: value})
+                }}
+                style={pickerSelectStyles}
+                items={[
+                    { label: 'Grama', value: 'grass'},
+                    { label: 'Veneno', value: 'poison'},
+                    { label: 'Fogo', value: 'Fire'},
+                    { label: 'Voador', value: 'flying'},
+                    { label: 'Água', value: 'water'},
+                    { label: 'Besouro', value: 'bug'},
+                    { label: 'Normal', value: 'normal'},
+                    { label: 'Elétrico', value: 'electric'},
+                    { label: 'Terra', value: 'ground'},
+                    { label: 'Fada', value: 'fairy'},
+                    { label: 'Psiquico', value: 'psychic'},
+                    { label: 'Pedra', value: 'rock'},
+                    { label: 'Gelo', value: 'ice'},
+                    { label: 'Dragão', value: 'dragon'},
+                    { label: 'Metal', value: 'steel'},
+                    { label: 'Sombrio', value: 'dark'},
+                ]}
+              />
             </View>
             <FlatList
               data={this.state.pokemons}
