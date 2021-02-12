@@ -6,28 +6,35 @@ const styles = StyleSheet.create({
         width:'45%',
         margin: 10,
         borderRadius: 10,
-        justifyContent:'center',
+        paddingVertical: 10,
+        flexDirection:'row',
+        maxWidth: '90%',
+        minWidth: '90%',
         alignItems: 'center',
-        paddingVertical: 10
     },
     name:{
         fontSize: 25,
-        marginBottom: 5
+        marginBottom: 20
+    },
+    data:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex:1
     },
     element:{
         borderRadius: 10,
         fontSize: 15,
         width: '40%',
+        maxWidth: '50%',
         textAlign: 'center',
         alignItems: 'center',
         justifyContent:'center'
     },
-   
     elementos:{
-        flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        width: '90%'
+        width: '90%',
+        flexDirection: 'row',
     }, 
     img:{
         width: 150,
