@@ -88,7 +88,7 @@ class Main extends Component{
                 items={[
                     { label: 'Grama', value: 'grass'},
                     { label: 'Veneno', value: 'poison'},
-                    { label: 'Fogo', value: 'Fire'},
+                    { label: 'Fogo', value: 'fire'},
                     { label: 'Voador', value: 'flying'},
                     { label: 'Água', value: 'water'},
                     { label: 'Besouro', value: 'bug'},
