@@ -42,9 +42,7 @@ class Main extends Component{
     const pokemons = pokemon.item
     const pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
     return (
-      <View key={pokemon.index} style={{alignItems:'center'}}>
-          <Pokemon name={pokemons.name} id={pokemonNumber} element={this.state.elemento}/>
-      </View>
+      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.index}/>
     )
   }
 

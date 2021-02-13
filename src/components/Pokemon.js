@@ -9,7 +9,9 @@ class Pokemon extends Component {
         this.state = {
             elemento: '',
             background: '',
-            tipos: []
+            tipos: [],
+            name: '',
+            id: 0
         }
         this.carregaPokemon()
     }
@@ -22,11 +24,21 @@ class Pokemon extends Component {
             })
             .then(data => {
                 const types = data.types.map( pokemon => pokemon.type.name)
-                this.setPokemons(types)
+                const name = data.forms[0].name
+                const id = data.id
+                if(this.props.element !== ''){
+                    if(types.includes(this.props.element)){
+                        this.setPokemons(types,name,id)
+                    }
+                    return
+                }else{
+                    this.setPokemons(types,name,id)
+                }
+                
         })
     }
 
-    setPokemons(data){
+    setPokemons(data,name,id){
         switch(data[0]){
             case 'grass':
                 this.setState({background:styles.backgroundGrass})
@@ -83,22 +95,28 @@ class Pokemon extends Component {
                 this.setState({background:styles.backgroundDark})
                 break  
         }
-        if(this.props.element !== '' && data[0].includes(this.props.element)){
-            this.setState({tipos: data})
+        if(this.props.element !== ''){
+            if(data[0].includes(this.props.element)){
+                this.setState({tipos: data})
+                this.setState({name:name})
+                this.setState({id: id})
+            }
             return
         }else{
             this.setState({tipos: data})
+            this.setState({name: name})
+            this.setState({id: id})
         }
-        console.log(this.props.element)
+        
     }
 
     render() {
-        const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.props.id}.png`
+        const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
         return (
             <View style={[styles.container,this.state.background]}>
                 <Image source={{uri:imagemUrl}} style={styles.img}/>
                 <View style={styles.data}>
-                    <Text style={styles.name}>{this.props.name}</Text>
+                    <Text style={styles.name}>{this.state.name}</Text>
                     <View style={styles.elementos}>
                         {this.state.tipos.map((elemento)=>{
                             switch(elemento){
