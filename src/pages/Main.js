@@ -11,11 +11,13 @@ class Main extends Component{
     this.state = {
       pokemons:[],
       loading: false,
-      elemento: ''
+      elemento: '',
+      recarrega: true
     }
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
     this.loading = this.loading.bind(this)
+    this.PokemonShow = this.PokemonShow.bind(this)
   }
   
   componentDidMount(){
@@ -42,7 +44,7 @@ class Main extends Component{
     const pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
     return (
       <View key={pokemon.index} style={{alignItems:'center'}}>
-          <Pokemon name={pokemons.name} id={pokemonNumber}/>
+          <Pokemon name={pokemons.name} id={pokemonNumber} element={this.state.elemento}/>
       </View>
     )
   }
@@ -76,11 +78,12 @@ class Main extends Component{
                 useNativeAndroidPickerStyle={false}
                 placeholder={{
                     label: 'Selecione o elemento para filtrar os pokémons',
-                    value: null,
+                    value: '',
                     color: '#9EA0A4',
                 }}
                 onValueChange={(value)=>{
                     this.setState({elemento: value})
+                    this.setState({recarrega: true})
                 }}
                 style={pickerSelectStyles}
                 items={[
@@ -103,7 +106,7 @@ class Main extends Component{
                 ]}
               />
             </View>
-            <FlatList
+            {this.state.recarrega && (<FlatList
               data={this.state.pokemons}
               keyExtractor={(pokemon) => pokemon.name}
               contentContainerStyle={styles.contentContainerStyle}
@@ -111,7 +114,7 @@ class Main extends Component{
               onEndReached={this.carregaPokemons}
               onEndReachedThreshold={0.1}
               ListFooterComponent={this.loading}
-              />  
+              />) }
           </View>        
         </View>
     )

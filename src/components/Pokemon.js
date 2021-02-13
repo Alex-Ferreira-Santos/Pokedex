@@ -27,8 +27,7 @@ class Pokemon extends Component {
     }
 
     setPokemons(data){
-        this.setState({tipos: data})
-        switch(this.state.tipos[0]){
+        switch(data[0]){
             case 'grass':
                 this.setState({background:styles.backgroundGrass})
                 break
@@ -84,6 +83,13 @@ class Pokemon extends Component {
                 this.setState({background:styles.backgroundDark})
                 break  
         }
+        if(this.props.element !== '' && data[0].includes(this.props.element)){
+            this.setState({tipos: data})
+            return
+        }else{
+            this.setState({tipos: data})
+        }
+        console.log(this.props.element)
     }
 
     render() {
