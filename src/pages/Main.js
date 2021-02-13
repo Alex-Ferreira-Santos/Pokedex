@@ -22,15 +22,17 @@ class Main extends Component{
   componentDidMount(){
     this.carregaPokemons()
   }
+  
   carregaPokemons(){ 
     const params = this.props.route.params
     this.state.loading = true
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=10`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=15`)
     .then(response => response.json())
     .then(data => {
+      console.log('passou aqui')
       this.setPokemons(data.results)
     })
-    params.inicial = params.inicial + 10
+    params.inicial = params.inicial + 15
     this.state.loading = false
   }
 
@@ -42,7 +44,7 @@ class Main extends Component{
     const pokemons = pokemon.item
     const pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
     return (
-      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.index}/>
+      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.index} />
     )
   }
 
@@ -52,13 +54,13 @@ class Main extends Component{
     }
     return(
       <View style={{flex:1}}>
+        <Text style={{color: 'white'}}>Carregando mais pokémons</Text>
         <ActivityIndicator size="large" color="white"/>
       </View>
     )
   }
 
   render(){
-    
     if(this.state.pokemons.length === 0){
       return(
         <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:'#303030'}}>

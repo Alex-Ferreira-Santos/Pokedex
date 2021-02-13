@@ -12,7 +12,7 @@ class Pokemon extends Component {
             tipos: [],
             name: '',
             id: 0,
-            visible: true
+            visible: false
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
         this.carregaPokemon()
@@ -29,14 +29,16 @@ class Pokemon extends Component {
                 const name = data.forms[0].name
                 const id = data.id
                 if(this.props.element !== ''){
-                    if(types.includes(this.props.element)){
+                    if(types.includes(this.props.element)){                   
                         this.setPokemons(types,name,id)
-                    }else{
-                        this.setState({visible:false})
+                        this.state.visible = true
                     }
+                    console.log(id)
+                    
                     return
                 }else{
                     this.setPokemons(types,name,id)
+                    this.state.visible = true
                 }
                 
         })
@@ -116,95 +118,99 @@ class Pokemon extends Component {
 
     render() {
         const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
-        return (
-            this.state.visible && (<View style={[styles.container,this.state.background]}>
-                <Image source={{uri:imagemUrl}} style={styles.img}/>
-                <View style={styles.data}>
-                    <Text style={styles.name}>{this.state.name}</Text>
-                    <View style={styles.elementos}>
-                        {this.state.tipos.map((elemento)=>{
-                            switch(elemento){
-                                case 'grass':
-                                    this.state.elemento = styles.grass
-                                    break
-                                case 'poison':
-                                    this.state.elemento = styles.poison
-                                    break
-                                case 'fire':
-                                    this.state.elemento = styles.fire
-                                    break
-                                case 'flying':
-                                    this.state.elemento = styles.flying         
-                                    break
-                                case 'dragon':
-                                    this.state.elemento = styles.dragon
-                                    return(
-                                        <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}>
-                                            <Text style={[this.state.elemento]} key={elemento}>{elemento}</Text>
-                                        </LinearGradient>
-                                    )
-                                case 'water':{
-                                    this.state.elemento = styles.water
-                                    break
+        if(this.state.visible){  
+            return (
+                <View style={[styles.container,this.state.background]}>
+                    <Image source={{uri:imagemUrl}} style={styles.img}/>
+                    <View style={styles.data}>
+                        <Text style={styles.name}>{this.state.name}</Text>
+                        <View style={styles.elementos}>
+                            {this.state.tipos.map((elemento)=>{
+                                switch(elemento){
+                                    case 'grass':
+                                        this.state.elemento = styles.grass
+                                        break
+                                    case 'poison':
+                                        this.state.elemento = styles.poison
+                                        break
+                                    case 'fire':
+                                        this.state.elemento = styles.fire
+                                        break
+                                    case 'flying':
+                                        this.state.elemento = styles.flying         
+                                        break
+                                    case 'dragon':
+                                        this.state.elemento = styles.dragon
+                                        return(
+                                            <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}>
+                                                <Text style={[this.state.elemento]} key={elemento}>{elemento}</Text>
+                                            </LinearGradient>
+                                        )
+                                    case 'water':{
+                                        this.state.elemento = styles.water
+                                        break
+                                    }
+                                    case 'bug':{
+                                        this.state.elemento = styles.bug
+                                        break
+                                    }
+                                    case 'normal':{
+                                        this.state.elemento = styles.normal
+                                        break
+                                    }
+                                    case 'electric':{
+                                        this.state.elemento = styles.eletric
+                                        break
+                                    }
+                                    case 'ground':{
+                                        this.state.elemento = styles.ground
+                                        break
+                                    }
+                                    case 'fairy':{
+                                        this.state.elemento = styles.fairy
+                                        break
+                                    }
+                                    case 'fighting':{
+                                        this.state.elemento = styles.fighting
+                                        break
+                                    }
+                                    case 'psychic':{
+                                        this.state.elemento = styles.psychic
+                                        break
+                                    }
+                                    case 'rock':{
+                                        this.state.elemento = styles.rock
+                                        break
+                                    }
+                                    case 'ice':{
+                                        this.state.elemento = styles.ice
+                                        break
+                                    }
+                                    case 'ghost':{
+                                        this.state.elemento = styles.ghost
+                                        break
+                                    }
+                                    case 'steel':{
+                                        this.state.elemento = styles.steel
+                                        break
+                                    }
+                                    case 'dark':{
+                                        this.state.elemento = styles.dark
+                                        break
+                                    }
                                 }
-                                case 'bug':{
-                                    this.state.elemento = styles.bug
-                                    break
-                                }
-                                case 'normal':{
-                                    this.state.elemento = styles.normal
-                                    break
-                                }
-                                case 'electric':{
-                                    this.state.elemento = styles.eletric
-                                    break
-                                }
-                                case 'ground':{
-                                    this.state.elemento = styles.ground
-                                    break
-                                }
-                                case 'fairy':{
-                                    this.state.elemento = styles.fairy
-                                    break
-                                }
-                                case 'fighting':{
-                                    this.state.elemento = styles.fighting
-                                    break
-                                }
-                                case 'psychic':{
-                                    this.state.elemento = styles.psychic
-                                    break
-                                }
-                                case 'rock':{
-                                    this.state.elemento = styles.rock
-                                    break
-                                }
-                                case 'ice':{
-                                    this.state.elemento = styles.ice
-                                    break
-                                }
-                                case 'ghost':{
-                                    this.state.elemento = styles.ghost
-                                    break
-                                }
-                                case 'steel':{
-                                    this.state.elemento = styles.steel
-                                    break
-                                }
-                                case 'dark':{
-                                    this.state.elemento = styles.dark
-                                    break
-                                }
-                            }
-                            return(
-                                <Text style={[styles.element,this.state.elemento]} key={elemento}>{elemento}</Text>
-                            )
-                            
-                        })}
+                                return(
+                                    <Text style={[styles.element,this.state.elemento]} key={elemento}>{elemento}</Text>
+                                )
+                                
+                            })}
+                        </View>
                     </View>
                 </View>
-            </View>)
-        )
+            )
+        }else{
+            return <View/>
+        }
     }
 }
 
