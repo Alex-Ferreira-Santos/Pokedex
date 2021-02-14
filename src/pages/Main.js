@@ -17,10 +17,15 @@ class Main extends Component{
     this.carregaPokemons = this.carregaPokemons.bind(this)
     this.loading = this.loading.bind(this)
     this.PokemonShow = this.PokemonShow.bind(this)
+    this.pokeDetail = this.pokeDetail.bind(this)
   }
   
   componentDidMount(){
     this.carregaPokemons()
+  }
+
+  pokeDetail(img,name,element){
+    this.props.navigation.navigate('PokeDetail',{img:img,name:name,element:element})
   }
 
   carregaPokemons(){ 
@@ -44,14 +49,13 @@ class Main extends Component{
             })
           })   
         }else{
-          console.log('passou else')
-          this.setPokemons(data.results)
-          
+          this.setPokemons(data.results)      
         }
         
       }
     })   
-    this.setState({loading: false})  
+    params.inicial = params.inicial + 15
+    this.state.loading = false 
   }
 
   setPokemons(data,elemento = false){
@@ -66,7 +70,7 @@ class Main extends Component{
     const pokemons = pokemon.item
     const pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
     return (
-      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.pokemonNumber} />
+      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.pokemonNumber} funcao={this.pokeDetail}/>
     )
   }
 
