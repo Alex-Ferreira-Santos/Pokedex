@@ -29,33 +29,29 @@ class Main extends Component{
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=15`)
     .then(response => response.json())
     .then(data => {
-      
-      if(this.state.elemento !== ''){
-        data.results.map(async(pokemons)=>{
-          let pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-          await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
-          .then( response => response.json())
-          .then( dados => {
-            const types = dados.types.map(pokemon => pokemon.type.name)
-            let pokemonPosition = data.results.indexOf(pokemons)
-            if(types.includes(this.state.elemento)){
-              this.setPokemons(data.results[pokemonPosition],true)
-              
-            }
-          })
-        })   
-      }else{
-        console.log('passou else')
-        this.setPokemons(data.results)
+      if(params.inicial < 898){
+        if(this.state.elemento !== ''){
+          data.results.map(async(pokemons)=>{
+            let pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
+            .then( response => response.json())
+            .then( dados => {
+              const types = dados.types.map(pokemon => pokemon.type.name)
+              let pokemonPosition = data.results.indexOf(pokemons)
+              if(types.includes(this.state.elemento)){
+                this.setPokemons(data.results[pokemonPosition],true)
+              }
+            })
+          })   
+        }else{
+          console.log('passou else')
+          this.setPokemons(data.results)
+          
+        }
+        
       }
-      
-    })
-    
-    params.inicial = params.inicial + 15
-    this.setState({loading: false})
-    console.log(params.inicial)
-    
-    
+    })   
+    this.setState({loading: false})  
   }
 
   setPokemons(data,elemento = false){

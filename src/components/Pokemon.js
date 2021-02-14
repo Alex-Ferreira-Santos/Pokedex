@@ -138,7 +138,7 @@ class Pokemon extends Component {
                                     case 'dragon':
                                         this.state.elemento = styles.dragon
                                         return(
-                                            <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}>
+                                            <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}  key={elemento}>
                                                 <Text style={[this.state.elemento]} key={elemento}>{elemento}</Text>
                                             </LinearGradient>
                                         )
