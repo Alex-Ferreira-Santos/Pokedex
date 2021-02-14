@@ -26,34 +26,42 @@ class Main extends Component{
   carregaPokemons(){ 
     const params = this.props.route.params
     this.state.loading = true
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=15`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=20`)
     .then(response => response.json())
     .then(data => {
-      console.log('passou aqui')
+      
       if(this.state.elemento !== ''){
-        data.results.map((pokemon)=>{
+        data.results.map(async(pokemon)=>{
           const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-          fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
+          await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
           .then( response => response.json())
           .then( dados => {
             const types = dados.types.map(pokemon => pokemon.type.name)
             if(types.includes(this.state.elemento)){
-              this.state.pokemons.push(data.results[pokemonNumber])
+              console.log(dados.forms[0].name)
+              this.setPokemons(data.results[pokemonNumber-1],true)
             }
-            console.log(this.state.pokemons)
+            console.log(this.state.pokemons.map(pokemon => pokemon.name))
+            params.inicial = params.inicial + 20
+            this.state.loading = false
             return
           })
         })   
       }else{
+        console.log('passou else')
         this.setPokemons(data.results)
       }
     })
-    params.inicial = params.inicial + 15
+    params.inicial = params.inicial + 20
     this.state.loading = false
   }
 
-  setPokemons(data){
-    this.setState({pokemons: [...this.state.pokemons,...data]})
+  setPokemons(data,elemento = false){
+    if(elemento){
+      this.setState({pokemons: [...this.state.pokemons,data]})
+    }else{
+      this.setState({pokemons: [...this.state.pokemons,...data]})
+    } 
   }
 
   PokemonShow(pokemon) {

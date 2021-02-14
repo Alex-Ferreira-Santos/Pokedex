@@ -12,7 +12,6 @@ class Pokemon extends Component {
             tipos: [],
             name: '',
             id: 0,
-            visible: false
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
         this.carregaPokemon()
@@ -31,14 +30,11 @@ class Pokemon extends Component {
                 if(this.props.element !== ''){
                     if(types.includes(this.props.element)){                   
                         this.setPokemons(types,name,id)
-                        this.state.visible = true
-                    }
-                    console.log(id)
-                    
+                    }                   
                     return
                 }else{
                     this.setPokemons(types,name,id)
-                    this.state.visible = true
+                    
                 }
                 
         })
@@ -118,7 +114,7 @@ class Pokemon extends Component {
 
     render() {
         const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
-        if(this.state.visible){  
+         
             return (
                 <View style={[styles.container,this.state.background]}>
                     <Image source={{uri:imagemUrl}} style={styles.img}/>
@@ -208,9 +204,7 @@ class Pokemon extends Component {
                     </View>
                 </View>
             )
-        }else{
-            return <View/>
-        }
+        
     }
 }
 
