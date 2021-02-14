@@ -26,34 +26,36 @@ class Main extends Component{
   carregaPokemons(){ 
     const params = this.props.route.params
     this.state.loading = true
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=20`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=15`)
     .then(response => response.json())
     .then(data => {
       
       if(this.state.elemento !== ''){
-        data.results.map(async(pokemon)=>{
-          const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+        data.results.map(async(pokemons)=>{
+          let pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
           await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
           .then( response => response.json())
           .then( dados => {
             const types = dados.types.map(pokemon => pokemon.type.name)
+            let pokemonPosition = data.results.indexOf(pokemons)
             if(types.includes(this.state.elemento)){
-              console.log(dados.forms[0].name)
-              this.setPokemons(data.results[pokemonNumber-1],true)
+              this.setPokemons(data.results[pokemonPosition],true)
+              
             }
-            console.log(this.state.pokemons.map(pokemon => pokemon.name))
-            params.inicial = params.inicial + 20
-            this.state.loading = false
-            return
           })
         })   
       }else{
         console.log('passou else')
         this.setPokemons(data.results)
       }
+      
     })
-    params.inicial = params.inicial + 20
-    this.state.loading = false
+    
+    params.inicial = params.inicial + 15
+    this.setState({loading: false})
+    console.log(params.inicial)
+    
+    
   }
 
   setPokemons(data,elemento = false){
@@ -68,7 +70,7 @@ class Main extends Component{
     const pokemons = pokemon.item
     const pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
     return (
-      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.index} />
+      <Pokemon id={pokemonNumber} element={this.state.elemento} key={pokemon.pokemonNumber} />
     )
   }
 
