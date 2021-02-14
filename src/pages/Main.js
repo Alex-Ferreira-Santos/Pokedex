@@ -22,7 +22,7 @@ class Main extends Component{
   componentDidMount(){
     this.carregaPokemons()
   }
-  
+
   carregaPokemons(){ 
     const params = this.props.route.params
     this.state.loading = true
@@ -30,7 +30,23 @@ class Main extends Component{
     .then(response => response.json())
     .then(data => {
       console.log('passou aqui')
-      this.setPokemons(data.results)
+      if(this.state.elemento !== ''){
+        data.results.map((pokemon)=>{
+          const pokemonNumber = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+          fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
+          .then( response => response.json())
+          .then( dados => {
+            const types = dados.types.map(pokemon => pokemon.type.name)
+            if(types.includes(this.state.elemento)){
+              this.state.pokemons.push(data.results[pokemonNumber])
+            }
+            console.log(this.state.pokemons)
+            return
+          })
+        })   
+      }else{
+        this.setPokemons(data.results)
+      }
     })
     params.inicial = params.inicial + 15
     this.state.loading = false
