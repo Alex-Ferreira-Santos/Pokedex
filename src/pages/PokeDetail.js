@@ -9,9 +9,11 @@ class PokeDetail extends Component {
         super(props)
         this.state = {
             element: '',
-            pokemon: []
+            pokemon: [],
+            background: ''
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
+        this.setBackground = this.setBackground.bind(this)
         this.carregaPokemon()
     }
     carregaPokemon(){
@@ -19,6 +21,68 @@ class PokeDetail extends Component {
         fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
         .then(response => response.json())
         .then(data => this.setState({pokemon:data}))
+    }
+
+    setBackground(){
+        if(this.state.pokemon !== undefined){
+            switch(this.state.pokemon.types[0].type.name){
+                case 'grass':
+                    this.state.background = styles.backgroundGrass
+                    break
+                case 'poison':
+                    this.state.background = styles.backgroundPoison
+                    break
+                case 'fire':
+                    this.state.background = styles.backgroundFire
+                    break
+                case 'flying':
+                    this.state.background = styles.backgroundFlying     
+                    break
+                case 'dragon':
+                    this.state.background = styles.backgroundDragon
+                    break
+                case 'water':                  
+                    this.state.background = styles.backgroundWater               
+                    break   
+                case 'bug':
+                    this.state.background = styles.backgroundBug
+                    break        
+                case 'normal':
+                    this.state.background = styles.backgroundNormal
+                    break            
+                case 'electric':
+                    this.state.background = styles.backgroundEletric
+                    break                  
+                case 'ground':
+                    this.state.background = styles.backgroundGround
+                    break
+                case 'fairy':
+                    this.state.background = styles.backgroundFairy
+                    break 
+                case 'fighting':
+                    this.state.background = styles.backgroundFighting
+                    break
+                case 'psychic':
+                    this.state.background = styles.backgroundPsychic
+                    break       
+                case 'rock':
+                    this.state.background = styles.backgroundRock
+                    break       
+                case 'ice':
+                    this.state.background = styles.backgroundIce
+                    break 
+                case 'ghost':
+                    this.state.background = styles.backgroundGhost
+                    break
+                case 'steel':
+                    this.state.background = styles.backgroundSteel
+                    break 
+                case 'dark':
+                    this.state.background = styles.backgroundDark
+                    break  
+            }
+        }
+        
     }
 
     render() {
@@ -31,9 +95,10 @@ class PokeDetail extends Component {
             )
         }
         const params = this.props.route.params
+        this.setBackground()
         return (
             <View style={styles.container}>
-                <View style={styles.imageBack}>
+                <View style={[styles.imageBack,this.state.background]}>
                     <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#c4c4c4'>
                         <Image source={ArrowLeft}/>
                     </TouchableHighlight>
