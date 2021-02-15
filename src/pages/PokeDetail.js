@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,ScrollView} from 'react-native'
+import {View,Text,Image,ScrollView,ActivityIndicator} from 'react-native'
 import styles from '../styles/pokeDetail'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -23,12 +23,12 @@ class PokeDetail extends Component {
     render() {
         if(this.state.pokemon.abilities === undefined){
             return(
-                <View>
-                    <Text>Carregando...</Text>
+                <View style={{justifyContent: 'center',alignItems: 'center',flex:1}}>
+                    <Text style={{fontSize: 50,marginBottom: 10}}>Carregando</Text>
+                    <ActivityIndicator color='black' size='large'/>
                 </View>
             )
         }
-        console.log(this.state.pokemon.moves[0].version_group_details[0].level_learned_at)
         const params = this.props.route.params
         return (
             <View style={styles.container}>
@@ -128,14 +128,24 @@ class PokeDetail extends Component {
                         })}
                     </View>
                     <View style={styles.section}>
-                        <Text style={styles.text}>Experiência básica ao derrotar: {this.state.pokemon.base_experience}</Text>
+                        <Text style={styles.text}>Experiência básica ao derrotar: <Text style={styles.number}>{this.state.pokemon.base_experience}</Text></Text>
                     </View>
+                    <View style={styles.section}>
+                        <Text style={styles.text}>Altura do pokémon: <Text style={styles.number}>{this.state.pokemon.height / 10}</Text> metros</Text>
+                    </View>
+                    <View style={styles.section}>
+                        <Text style={styles.text}>Peso do pokémon: <Text style={styles.number}>{this.state.pokemon.weight / 10}</Text> quilos</Text>
+                    </View>
+                    <Text style={styles.lista}>Status</Text>
+                    {this.state.pokemon.stats.map(pokemon => 
+                        <Text key={pokemon.stat.name} style={styles.stats}>quantidade de <Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> inicial: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
+                    )}
                     <Text style={styles.lista}>Lista de movimentos:</Text>
                     
                         {this.state.pokemon.moves.map( pokemon => 
-                            <View style={[styles.section,styles.atq]}>
-                                <Text key={pokemon.move.name} style={styles.moves}>{pokemon.move.name}</Text>
-                                <Text style={[styles.moves,styles.level]}>Pode aprender no nivel: {pokemon.version_group_details[0].level_learned_at}</Text>
+                            <View style={[styles.section,styles.atq]} key={pokemon.move.name}>
+                                <Text style={[styles.moves,{fontWeight: 'bold'}]}>{pokemon.move.name}</Text>
+                                <Text style={[styles.moves,styles.level]}>Pode aprender no nivel: <Text style={styles.number}>{pokemon.version_group_details[0].level_learned_at}</Text></Text>
                             </View>
                         )}
                     

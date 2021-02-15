@@ -50,16 +50,27 @@ const styles = StyleSheet.create({
     },
     lista:{
         fontSize: 25,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginVertical: 20,
+        borderTopWidth: 1,
+        paddingTop: 10,
+        borderColor: 'rgba(0,0,0,0.2)'
     },
     moves:{
         fontSize: 16,
-        marginLeft: 20
+        marginLeft: 20,
     },
     level:{
         position:'absolute',
-        right: 0,
-        marginRight: 10
+        right: 10,
+    },
+    stats:{
+        marginLeft: 20,
+        fontSize: 18,
+        marginVertical: 5
+    },
+    number:{
+        color: 'blue'
     },
     atq:{
         borderTopWidth: 1,
