@@ -12,12 +12,14 @@ class Main extends Component{
       pokemons:[],
       loading: false,
       elemento: '',
+      inicio: this.props.route.params.inicial
     }
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
     this.loading = this.loading.bind(this)
     this.PokemonShow = this.PokemonShow.bind(this)
     this.pokeDetail = this.pokeDetail.bind(this)
+    this.setInicio = this.setInicio.bind(this)
   }
   
   componentDidMount(){
@@ -29,12 +31,12 @@ class Main extends Component{
   }
 
   carregaPokemons(){ 
-    const params = this.props.route.params
+    const length = this.state.pokemons.length
     this.state.loading = true
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=200`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${this.state.inicio}&limit=15`)
     .then(response => response.json())
     .then(data => {
-      if(params.inicial < 898){
+      if(this.state.inicio < 898){
         if(this.state.elemento !== ''){
           data.results.map(async(pokemons)=>{
             let pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
@@ -51,11 +53,17 @@ class Main extends Component{
         }else{
           this.setPokemons(data.results)      
         }
-        
+        this.setState({inicio: this.state.inicio + 15})   
+        this.state.loading = false 
+        this.setInicio()
+        console.log(this.state.pokemons)
       }
     })   
-    params.inicial = params.inicial + 200
-    this.state.loading = false 
+  }
+  setInicio(length){
+    if(length === this.state.pokemons.length){
+          this.state.inicio = this.state.inicio + 15
+        }
   }
 
   setPokemons(data,elemento = false){
@@ -109,7 +117,7 @@ class Main extends Component{
                 onValueChange={(value)=>{
                     this.setState({elemento: value})
                     this.setState({pokemons:[]})
-                    this.props.route.params.inicial = 0
+                    this.state.inicio = 0
                     this.carregaPokemons()
                 }}
                 style={pickerSelectStyles}
