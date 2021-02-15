@@ -33,6 +33,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'green',
     },
+    goback:{
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        backgroundColor:'white',
+        borderRadius: 50,
+        padding: 10,
+    },
     element:{
         borderRadius: 10,
         textAlign: 'center',
@@ -55,6 +63,23 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         paddingTop: 10,
         borderColor: 'rgba(0,0,0,0.2)'
+    },
+    version:{
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems: 'center',
+        width: width,
+    },
+    sprites:{
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pokemon:{
+        width: 200,
+        height: 200,
+    },
+    legend:{
+        fontSize: 20
     },
     moves:{
         fontSize: 16,

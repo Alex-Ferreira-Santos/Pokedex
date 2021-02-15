@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
-import {View,Text,Image,ScrollView,ActivityIndicator} from 'react-native'
+import {View,Text,Image,ScrollView,ActivityIndicator,TouchableHighlight} from 'react-native'
 import styles from '../styles/pokeDetail'
 import LinearGradient from 'react-native-linear-gradient'
+import ArrowLeft from '../img/arrow.png'
 
 class PokeDetail extends Component {
     constructor(props) {
@@ -33,6 +34,9 @@ class PokeDetail extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.imageBack}>
+                    <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#c4c4c4'>
+                        <Image source={ArrowLeft}/>
+                    </TouchableHighlight>
                     <Image source={{uri: params.img}} style={styles.img}/>
                 </View>
                 <ScrollView contentContainerStyle={styles.scrollView}>
@@ -140,6 +144,17 @@ class PokeDetail extends Component {
                     {this.state.pokemon.stats.map(pokemon => 
                         <Text key={pokemon.stat.name} style={styles.stats}>quantidade de <Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> inicial: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
                     )}
+                    <Text style={styles.lista}>Versões</Text>
+                    <View style={styles.version}>
+                        <View style={styles.sprites}>
+                            <Image source={{uri: this.state.pokemon.sprites.front_default}} style={styles.pokemon}/>
+                            <Text style={styles.legend}>Padrão</Text>
+                        </View>
+                        <View style={styles.sprites}>
+                            <Image source={{uri: this.state.pokemon.sprites.front_shiny}} style={styles.pokemon}/>
+                            <Text style={styles.legend}>Shiny</Text>
+                        </View>
+                    </View>
                     <Text style={styles.lista}>Lista de movimentos:</Text>
                     
                         {this.state.pokemon.moves.map( pokemon => 
