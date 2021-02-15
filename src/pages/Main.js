@@ -31,7 +31,7 @@ class Main extends Component{
   carregaPokemons(){ 
     const params = this.props.route.params
     this.state.loading = true
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=15`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${params.inicial}&limit=200`)
     .then(response => response.json())
     .then(data => {
       if(params.inicial < 898){
@@ -54,7 +54,7 @@ class Main extends Component{
         
       }
     })   
-    params.inicial = params.inicial + 15
+    params.inicial = params.inicial + 200
     this.state.loading = false 
   }
 

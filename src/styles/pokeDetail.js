@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
         borderRadius: 50,
         padding: 10,
+        zIndex:1
     },
     element:{
         borderRadius: 10,

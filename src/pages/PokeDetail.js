@@ -189,14 +189,6 @@ class PokeDetail extends Component {
                         })} 
                     </View>
                     <View style={styles.section}>
-                        <Text style={styles.text}>Habilidades: </Text>
-                        {this.state.pokemon.abilities.map( pokemon => {
-                            return(
-                                <Text key={pokemon.ability.name} style={styles.text}>{pokemon.ability.name}</Text>
-                            )
-                        })}
-                    </View>
-                    <View style={styles.section}>
                         <Text style={styles.text}>Experiência básica ao derrotar: <Text style={styles.number}>{this.state.pokemon.base_experience}</Text></Text>
                     </View>
                     <View style={styles.section}>
@@ -205,6 +197,14 @@ class PokeDetail extends Component {
                     <View style={styles.section}>
                         <Text style={styles.text}>Peso do pokémon: <Text style={styles.number}>{this.state.pokemon.weight / 10}</Text> quilos</Text>
                     </View>
+                    <Text style={styles.lista}>Habilidades</Text>
+                    
+                        {this.state.pokemon.abilities.map( pokemon => {
+                            return(
+                                <Text key={pokemon.ability.name} style={{textAlign:'center',fontSize:20}}>{pokemon.ability.name}</Text>
+                            )
+                        })}
+                    
                     <Text style={styles.lista}>Status</Text>
                     {this.state.pokemon.stats.map(pokemon => 
                         <Text key={pokemon.stat.name} style={styles.stats}>quantidade de <Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> inicial: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
