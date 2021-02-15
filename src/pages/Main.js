@@ -24,8 +24,8 @@ class Main extends Component{
     this.carregaPokemons()
   }
 
-  pokeDetail(img,name,element){
-    this.props.navigation.navigate('PokeDetail',{img:img,name:name,element:element})
+  pokeDetail(img,name,element,id){
+    this.props.navigation.navigate('PokeDetail',{img:img,name:name,element:element,id:id})
   }
 
   carregaPokemons(){ 

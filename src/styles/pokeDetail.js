@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(0, 0, 0,0.2)',
         paddingBottom: 10
     },
-    elements:{
+    section:{
         flexDirection: 'row',
         width: '100%',
+        marginBottom: 10
     },
     imageBack:{
         width: '100%',
@@ -46,6 +47,23 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 20,
         marginLeft: 20
+    },
+    lista:{
+        fontSize: 25,
+        textAlign: 'center'
+    },
+    moves:{
+        fontSize: 16,
+        marginLeft: 20
+    },
+    level:{
+        position:'absolute',
+        right: 0,
+        marginRight: 10
+    },
+    atq:{
+        borderTopWidth: 1,
+        borderBottomWidth: 1
     },
     grass:{
         backgroundColor:'#1A771E',

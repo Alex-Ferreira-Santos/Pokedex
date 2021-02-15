@@ -7,10 +7,28 @@ class PokeDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            element: ''
+            element: '',
+            pokemon: []
         }
+        this.carregaPokemon = this.carregaPokemon.bind(this)
+        this.carregaPokemon()
     }
+    carregaPokemon(){
+        const params = this.props.route.params
+        fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
+        .then(response => response.json())
+        .then(data => this.setState({pokemon:data}))
+    }
+
     render() {
+        if(this.state.pokemon.abilities === undefined){
+            return(
+                <View>
+                    <Text>Carregando...</Text>
+                </View>
+            )
+        }
+        console.log(this.state.pokemon.moves[0].version_group_details[0].level_learned_at)
         const params = this.props.route.params
         return (
             <View style={styles.container}>
@@ -19,7 +37,7 @@ class PokeDetail extends Component {
                 </View>
                 <ScrollView contentContainerStyle={styles.scrollView}>
                     <Text style={styles.name}>{params.name}</Text>
-                    <View style={styles.elements}>
+                    <View style={styles.section}>
                         <Text style={styles.text}>Elementos: </Text>
                         {params.element.map( elemento => {
                             switch(elemento){
@@ -101,6 +119,26 @@ class PokeDetail extends Component {
                         
                         })} 
                     </View>
+                    <View style={styles.section}>
+                        <Text style={styles.text}>Habilidades: </Text>
+                        {this.state.pokemon.abilities.map( pokemon => {
+                            return(
+                                <Text key={pokemon.ability.name} style={styles.text}>{pokemon.ability.name}</Text>
+                            )
+                        })}
+                    </View>
+                    <View style={styles.section}>
+                        <Text style={styles.text}>Experiência básica ao derrotar: {this.state.pokemon.base_experience}</Text>
+                    </View>
+                    <Text style={styles.lista}>Lista de movimentos:</Text>
+                    
+                        {this.state.pokemon.moves.map( pokemon => 
+                            <View style={[styles.section,styles.atq]}>
+                                <Text key={pokemon.move.name} style={styles.moves}>{pokemon.move.name}</Text>
+                                <Text style={[styles.moves,styles.level]}>Pode aprender no nivel: {pokemon.version_group_details[0].level_learned_at}</Text>
+                            </View>
+                        )}
+                    
                 </ScrollView>
                 
             </View>

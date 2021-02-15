@@ -116,7 +116,7 @@ class Pokemon extends Component {
         const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
          
             return (
-                <TouchableNativeFeedback onPress={()=>{this.props.funcao(imagemUrl,this.state.name,this.state.tipos)}}>
+                <TouchableNativeFeedback onPress={()=>{this.props.funcao(imagemUrl,this.state.name,this.state.tipos,this.props.id)}}>
                     <View style={[styles.container,this.state.background]}>
                         <Image source={{uri:imagemUrl}} style={styles.img}/>
                         <View style={styles.data}>
