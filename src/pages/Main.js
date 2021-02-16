@@ -60,17 +60,18 @@ class Main extends Component{
     })   
   }
   setInicio(length){
-    console.log(this.state.pokemons)
     if(length === this.state.pokemons.length){
+      console.log('passou aqui')
           this.carregaPokemons()
     }
   }
 
   setPokemons(data,elemento = false){
     if(elemento){
-      if(this.state.pokemons[this.state.pokemons.length - 1] !== data){
+      if(this.state.pokemons.findIndex(pokemon => pokemon.name === data.name) === -1){
         this.setState({pokemons: [...this.state.pokemons,data]})
-      } 
+      }
+      console.log(data)  
     }else{
       this.setState({pokemons: [...this.state.pokemons,...data]})
     } 
