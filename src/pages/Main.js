@@ -62,10 +62,7 @@ class Main extends Component{
     })   
   }
   setInicio(length){
-    console.log('length: '+length)
-    console.log('pokemon length: '+this.state.pokemons.length)
     if(length === this.state.pokemons.length || this.state.pokemons.length === 0){
-      console.log('passou length')
       this.carregaPokemons()
     }
   }
@@ -75,7 +72,6 @@ class Main extends Component{
       if(this.state.pokemons.findIndex(pokemon => pokemon.name === data.name) === -1){
         this.setState({pokemons: [...this.state.pokemons,data]})
       }
-      console.log(data)  
     }else{
       this.setState({pokemons: [...this.state.pokemons,...data]})
     } 
