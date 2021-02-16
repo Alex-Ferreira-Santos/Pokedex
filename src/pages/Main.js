@@ -36,10 +36,12 @@ class Main extends Component{
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=${this.state.inicio}&limit=15`)
     .then(response => response.json())
     .then(data => {
+      
       if(this.state.inicio < 898){
         if(this.state.elemento !== ''){
           data.results.map(async(pokemons)=>{
             let pokemonNumber = pokemons.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+            
             await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`)
             .then( response => response.json())
             .then( dados => {
@@ -60,9 +62,11 @@ class Main extends Component{
     })   
   }
   setInicio(length){
-    if(length === this.state.pokemons.length){
-      console.log('passou aqui')
-          this.carregaPokemons()
+    console.log('length: '+length)
+    console.log('pokemon length: '+this.state.pokemons.length)
+    if(length === this.state.pokemons.length || this.state.pokemons.length === 0){
+      console.log('passou length')
+      this.carregaPokemons()
     }
   }
 
