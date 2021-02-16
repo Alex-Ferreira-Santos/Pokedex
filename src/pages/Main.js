@@ -55,20 +55,22 @@ class Main extends Component{
         }
         this.setState({inicio: this.state.inicio + 15})   
         this.state.loading = false 
-        this.setInicio()
-        console.log(this.state.pokemons)
+        this.setInicio(length)
       }
     })   
   }
   setInicio(length){
+    console.log(this.state.pokemons)
     if(length === this.state.pokemons.length){
-          this.state.inicio = this.state.inicio + 15
-        }
+          this.carregaPokemons()
+    }
   }
 
   setPokemons(data,elemento = false){
     if(elemento){
-      this.setState({pokemons: [...this.state.pokemons,data]})
+      if(this.state.pokemons[this.state.pokemons.length - 1] !== data){
+        this.setState({pokemons: [...this.state.pokemons,data]})
+      } 
     }else{
       this.setState({pokemons: [...this.state.pokemons,...data]})
     } 
