@@ -91,7 +91,7 @@ class Main extends Component{
     }
     return(
       <View style={{flex:1}}>
-        <Text style={{color: 'white'}}>Carregando mais pokémons</Text>
+        <Text>Carregando mais pokémons</Text>
         <ActivityIndicator size="large" color="white"/>
       </View>
     )
@@ -100,9 +100,9 @@ class Main extends Component{
   render(){
     if(this.state.pokemons.length === 0){
       return(
-        <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:'#303030'}}>
-          <Text style={{fontSize: 50,color:'white',margin: 20}}>Carregando</Text>
-          <ActivityIndicator size="large" color="white"/>
+        <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:'white'}}>
+          <Text style={{fontSize: 50,margin: 20}}>Carregando</Text>
+          <ActivityIndicator size="large" color="black"/>
         </View>
       )
     }

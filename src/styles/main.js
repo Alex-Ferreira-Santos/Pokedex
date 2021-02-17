@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     inside:{
         width:'95%',
-        backgroundColor: '#303030',
+        backgroundColor: 'white',
     },
     section:{
         backgroundColor: '#c21e0c',
