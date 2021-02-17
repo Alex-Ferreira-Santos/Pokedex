@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
     section:{
         backgroundColor: '#c21e0c',
         paddingVertical: 10,
+    },
+    ad:{
+        position: 'absolute',
+        bottom: 0,
     }
 })
 
