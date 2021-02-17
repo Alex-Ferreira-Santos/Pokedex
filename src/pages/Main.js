@@ -4,6 +4,7 @@ import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 import RNPickerSelect from 'react-native-picker-select'
 import pickerSelectStyles from '../styles/pickerSelectStyle'
+import {AdMobBanner} from 'react-native-admob'
 
 class Main extends Component{ 
   constructor(props){
@@ -144,6 +145,7 @@ class Main extends Component{
                 ]}
               />
             </View>
+            
             <FlatList
               data={this.state.pokemons}
               keyExtractor={(pokemon) => pokemon.name}
@@ -153,7 +155,15 @@ class Main extends Component{
               onEndReachedThreshold={0.1}
               ListFooterComponent={this.loading}
               />
-          </View>        
+              
+          </View>     
+          <AdMobBanner
+            adSize="fullBanner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111"
+            testDevices={[AdMobBanner.simulatorId]}
+            onAdFailedToLoad={error => console.error(error)}
+            style={styles.ad}
+          />
         </View>
     )
   }
