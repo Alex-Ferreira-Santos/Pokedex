@@ -13,7 +13,9 @@ class Main extends Component{
       pokemons:[],
       loading: false,
       elemento: '',
-      inicio: this.props.route.params.inicial
+      inicio: this.props.route.params.inicial,
+      color: 'black',
+      background: ''
     }
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
@@ -21,14 +23,17 @@ class Main extends Component{
     this.PokemonShow = this.PokemonShow.bind(this)
     this.pokeDetail = this.pokeDetail.bind(this)
     this.setInicio = this.setInicio.bind(this)
+    this.setTheme = this.setTheme.bind(this)
   }
   
   componentDidMount(){
+    this.setTheme()
     this.carregaPokemons()
   }
 
   pokeDetail(img,name,element,id){
-    this.props.navigation.navigate('PokeDetail',{img:img,name:name,element:element,id:id})
+    const params = this.props.route.params
+    this.props.navigation.navigate('PokeDetail',{img:img,name:name,element:element,id:id,theme:params.theme})
   }
 
   carregaPokemons(){ 
@@ -86,6 +91,17 @@ class Main extends Component{
     )
   }
 
+  setTheme(){
+    const params = this.props.route.params
+    if(params.theme === 'light'){
+      this.setState({color: 'black'})
+      this.setState({background: 'white'})
+    }else{
+      this.setState({color: 'white'})
+      this.setState({background: '#303030'})
+    }
+  }
+
   loading = () => {
     if(this.state.loading){
       return null
@@ -93,7 +109,7 @@ class Main extends Component{
     return(
       <View style={{flex:1}}>
         <Text>Carregando mais pokémons</Text>
-        <ActivityIndicator size="large" color="white"/>
+        <ActivityIndicator size="large" color={this.state.color}/>
       </View>
     )
   }
@@ -101,15 +117,15 @@ class Main extends Component{
   render(){
     if(this.state.pokemons.length === 0){
       return(
-        <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:'white'}}>
-          <Text style={{fontSize: 50,margin: 20}}>Carregando</Text>
-          <ActivityIndicator size="large" color="black"/>
+        <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:this.state.background}}>
+          <Text style={{fontSize: 50,margin: 20,color:this.state.color}}>Carregando</Text>
+          <ActivityIndicator size="large" color={this.state.color}/>
         </View>
       )
     }
     return (
         <View style={styles.container}>
-          <View style={styles.inside}>
+          <View style={[styles.inside,{backgroundColor:this.state.background}]}>
             <View style={styles.section}>
               <RNPickerSelect
                 useNativeAndroidPickerStyle={false}
