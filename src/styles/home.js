@@ -31,6 +31,13 @@ const styles = StyleSheet.create({
     },
     text:{
         marginTop: 20,
+    },
+    mode:{
+        borderRadius: 50,
+        padding: 10,
+        position: 'absolute',
+        top:20,
+        right: 20,
     }
 })
 

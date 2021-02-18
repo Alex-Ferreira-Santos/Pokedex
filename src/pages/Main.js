@@ -155,13 +155,11 @@ class Main extends Component{
               onEndReachedThreshold={0.1}
               ListFooterComponent={this.loading}
               />
-              
           </View>     
           <AdMobBanner
             adSize="fullBanner"
             adUnitID="ca-app-pub-3940256099942544/6300978111"
             testDevices={[AdMobBanner.simulatorId]}
-            onAdFailedToLoad={error => console.error(error)}
             style={styles.ad}
           />
         </View>
