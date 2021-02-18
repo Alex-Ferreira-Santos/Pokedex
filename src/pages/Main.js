@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList,ActivityIndicator} from 'react-native'
+import {View,Text,FlatList,ActivityIndicator,Dimensions} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 import RNPickerSelect from 'react-native-picker-select'
@@ -15,7 +15,8 @@ class Main extends Component{
       elemento: '',
       inicio: this.props.route.params.inicial,
       color: 'black',
-      background: ''
+      background: '',
+      height: '100%'
     }
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
@@ -125,7 +126,7 @@ class Main extends Component{
     }
     return (
         <View style={styles.container}>
-          <View style={[styles.inside,{backgroundColor:this.state.background}]}>
+          <View style={[styles.inside,{backgroundColor:this.state.background,height:this.state.height}]}>
             <View style={styles.section}>
               <RNPickerSelect
                 useNativeAndroidPickerStyle={false}
@@ -174,7 +175,11 @@ class Main extends Component{
           </View>     
           <AdMobBanner
             adSize="fullBanner"
-            adUnitID="ca-app-pub-3940256099942544/6300978111"
+            adUnitID="ca-app-pub-8189428112004694/2341890408"
+            onAdLoaded={()=>{
+              const height = Dimensions.get('screen').height
+              this.setState({height: height - 138});
+            }}
             testDevices={[AdMobBanner.simulatorId]}
             style={styles.ad}
           />

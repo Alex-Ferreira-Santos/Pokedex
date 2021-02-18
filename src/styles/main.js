@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     },
     contentContainerStyle:{
         alignItems: 'center',
-
     },
     inside:{
         width:'95%',

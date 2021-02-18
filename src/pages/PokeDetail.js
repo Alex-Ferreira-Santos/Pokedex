@@ -3,6 +3,7 @@ import {View,Text,Image,ScrollView,ActivityIndicator,TouchableHighlight} from 'r
 import styles from '../styles/pokeDetail'
 import LinearGradient from 'react-native-linear-gradient'
 import ArrowLeft from '../img/arrow.png'
+import {AdMobBanner} from 'react-native-admob'
 
 class PokeDetail extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class PokeDetail extends Component {
             background: '',
             color: 'black',
             backgroundColor: 'white',
+            height: ''
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
         this.setBackground = this.setBackground.bind(this)
@@ -248,7 +250,13 @@ class PokeDetail extends Component {
                         )}
                     
                 </ScrollView>
-                
+                <AdMobBanner
+                    adSize="fullBanner"
+                    adUnitID="ca-app-pub-8189428112004694/6656964968"
+                    onAdFailedToLoad={ err => console.log(err)}
+                    testDevices={[AdMobBanner.simulatorId]}
+                    style={styles.ad}
+                />
             </View>
         )
     }
