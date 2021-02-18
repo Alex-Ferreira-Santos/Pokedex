@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     number:{
-        color: 'blue'
+        color: '#0AA407'
     },
     atq:{
         borderTopWidth: 1,
