@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableHighlight} from 'react-native'
 import styles from '../styles/home'
-import pokebola from '../img/pokebola.png'
+import pokebola from '../img/icon2.png'
 import pokedex from '../img/Simpledex.png'
 import Icon from 'react-native-vector-icons/Ionicons'
 
