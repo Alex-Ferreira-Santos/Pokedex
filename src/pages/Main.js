@@ -132,9 +132,10 @@ class Main extends Component{
                 useNativeAndroidPickerStyle={false}
                 placeholder={{
                     label: 'Selecione o elemento para filtrar os pokémons',
-                    value: this.state.elemento,
+                    value: '',
                     color: '#9EA0A4',
                 }}
+                value={this.state.elemento}
                 onValueChange={(value)=>{
                     this.setState({elemento: value})
                     this.setState({pokemons:[]})
@@ -143,6 +144,7 @@ class Main extends Component{
                 }}
                 style={pickerSelectStyles}
                 items={[
+                    { label: 'Sem filtro', value: ''},
                     { label: 'Grama', value: 'grass'},
                     { label: 'Veneno', value: 'poison'},
                     { label: 'Fogo', value: 'fire'},

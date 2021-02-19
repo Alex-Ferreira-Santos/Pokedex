@@ -253,7 +253,6 @@ class PokeDetail extends Component {
                 <AdMobBanner
                     adSize="fullBanner"
                     adUnitID="ca-app-pub-8189428112004694/6656964968"
-                    onAdFailedToLoad={ err => console.log(err)}
                     testDevices={[AdMobBanner.simulatorId]}
                     style={styles.ad}
                 />
