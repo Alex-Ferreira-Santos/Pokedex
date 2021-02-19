@@ -123,7 +123,41 @@ class PokeDetail extends Component {
                     <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#c4c4c4'>
                         <Image source={ArrowLeft}/>
                     </TouchableHighlight>
+                    {console.log(params.img)}
                     <Image source={{uri: params.img}} style={styles.img}/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {/* colocar imagem pixelada caso n ache */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </View>
                 <ScrollView contentContainerStyle={[styles.scrollView,{backgroundColor:this.state.backgroundColor}]}>
                     <Text style={[styles.name,{color:this.state.color}]}>{params.name}</Text>
@@ -146,8 +180,51 @@ class PokeDetail extends Component {
                                 case 'dragon':
                                     this.state.element = styles.dragon
                                     return(
-                                        <LinearGradient colors={['#2029EC','#FF0000']} style={styles.element}  key={elemento}>
-                                            <Text style={[[styles.text],this.state.element]} key={elemento}>{elemento}</Text>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        //elemento esticado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        
+                                        <LinearGradient colors={['#2029EC','#FF0000']} style={[styles.element,{marginLeft: 20}]}  key={elemento}>
+                                            <Text style={[{fontSize: 20},this.state.element]} key={elemento}>{elemento}</Text>
                                         </LinearGradient>
                                     )
                                 case 'water':{
