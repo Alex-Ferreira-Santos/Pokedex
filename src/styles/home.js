@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top:20,
         right: 20,
+        borderColor:'gray',
+        borderWidth:1
     }
 })
 

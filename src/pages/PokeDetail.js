@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,ScrollView,ActivityIndicator,TouchableHighlight} from 'react-native'
+import {View,Text,Image,ScrollView,ActivityIndicator,TouchableHighlight,StatusBar} from 'react-native'
 import styles from '../styles/pokeDetail'
 import LinearGradient from 'react-native-linear-gradient'
 import ArrowLeft from '../img/arrow.png'
@@ -11,7 +11,7 @@ class PokeDetail extends Component {
         this.state = {
             element: '',
             pokemon: [],
-            background: '',
+            background: 'red',
             color: 'black',
             backgroundColor: 'white',
             height: ''
@@ -118,6 +118,7 @@ class PokeDetail extends Component {
         this.setBackground()
         return (
             <View style={styles.container}>
+                <StatusBar backgroundColor={this.state.background.backgroundColor}/>
                 <View style={[styles.imageBack,this.state.background]}>
                     <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#c4c4c4'>
                         <Image source={ArrowLeft}/>
