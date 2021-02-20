@@ -125,67 +125,8 @@ class PokeDetail extends Component {
                     </TouchableHighlight>
                     {console.log(params.img)}
                     <Image source={{uri: params.img}} style={styles.img}/>
-                    {/*
-                        412
-                        413
-                        421
-                        492
-                        585
-                        586
-                        641
-                        642
-                        648
-                        647
-                        718
-                        720
-                        741
-                        746
-                        774
-                        778
-                        849
-                        875
-                        877
-                        893
-                        895
-                        898
-                        10001
-                        10002
-                     */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {/* colocar imagem pixelada caso n ache */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </View>
                 <ScrollView contentContainerStyle={[styles.scrollView,{backgroundColor:this.state.backgroundColor}]}>
-                    <Text style={[styles.text,{color:this.state.color}]}>{this.state.pokemon.id}</Text>
                     <Text style={[styles.name,{color:this.state.color}]}>{params.name}</Text>
                     <View style={styles.section}>
                         <Text style={[styles.text,{color:this.state.color}]}>Elementos: </Text>

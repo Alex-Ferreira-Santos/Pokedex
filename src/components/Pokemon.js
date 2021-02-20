@@ -12,6 +12,8 @@ class Pokemon extends Component {
             tipos: [],
             name: '',
             id: 0,
+            imageNotShow:[412,413,421,492,585,586,641,642,648,647,718,720,741,746,774,778,849,875,877,893,895,898,10001,10002],
+            imagem: ''
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
         this.carregaPokemon()
@@ -27,20 +29,21 @@ class Pokemon extends Component {
                 const types = data.types.map( pokemon => pokemon.type.name)
                 const name = data.forms[0].name
                 const id = data.id
+                const imagem = data.sprites.front_default
                 if(this.props.element !== ''){
                     if(types.includes(this.props.element)){                   
-                        this.setPokemons(types,name,id)
+                        this.setPokemons(types,name,id,imagem)
                     }                   
                     return
                 }else{
-                    this.setPokemons(types,name,id)
+                    this.setPokemons(types,name,id,imagem)
                     
                 }
                 
         })
     }
 
-    setPokemons(data,name,id){
+    setPokemons(data,name,id,imagem){
         switch(data[0]){
             case 'grass':
                 this.setState({background:styles.backgroundGrass})
@@ -102,23 +105,35 @@ class Pokemon extends Component {
                 this.setState({tipos: data})
                 this.setState({name:name})
                 this.setState({id: id})
+                if(this.state.imageNotShow.includes(id)){
+                    this.setState({imagem: imagem})
+                }else{
+                    this.setState({imagem:`https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png` })
+                }
+                
             }
             return
         }else{
             this.setState({tipos: data})
             this.setState({name: name})
             this.setState({id: id})
+            if(this.state.imageNotShow.includes(id)){
+                this.setState({imagem: imagem})
+            }else{
+                this.setState({imagem:`https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png` })
+            }
         }
         
     }
 
     render() {
-        const imagemUrl = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
-         
+        if(this.state.imagem === ''){
+            this.state.imagem = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
+        }
             return (
-                <TouchableNativeFeedback onPress={()=>{this.props.funcao(imagemUrl,this.state.name,this.state.tipos,this.props.id)}}>
+                <TouchableNativeFeedback onPress={()=>{this.props.funcao(this.state.imagem,this.state.name,this.state.tipos,this.props.id)}}>
                     <View style={[styles.container,this.state.background]}>
-                        <Image source={{uri:imagemUrl}} style={styles.img}/>
+                        <Image source={{uri:this.state.imagem}} style={styles.img}/>
                         <View style={styles.data}>
                             <Text style={styles.name}>{this.state.name}</Text>
                             <View style={styles.elementos}>
