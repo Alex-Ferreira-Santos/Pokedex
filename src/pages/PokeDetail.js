@@ -123,7 +123,6 @@ class PokeDetail extends Component {
                     <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#c4c4c4'>
                         <Image source={ArrowLeft}/>
                     </TouchableHighlight>
-                    {console.log(params.img)}
                     <Image source={{uri: params.img}} style={styles.img}/>
                 </View>
                 <ScrollView contentContainerStyle={[styles.scrollView,{backgroundColor:this.state.backgroundColor}]}>
@@ -231,25 +230,33 @@ class PokeDetail extends Component {
                     {this.state.pokemon.stats.map(pokemon => 
                         <Text key={pokemon.stat.name} style={[styles.stats,{color:this.state.color}]}>quantidade de <Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> inicial: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
                     )}
-                    <Text style={[styles.lista,{color:this.state.color}]}>Versões</Text>
-                    <View style={styles.version}>
-                        <View style={styles.sprites}>
-                            <Image source={{uri: this.state.pokemon.sprites.front_default}} style={styles.pokemon}/>
-                            <Text style={[styles.legend,{color:this.state.color}]}>Padrão</Text>
+                    {this.state.pokemon.sprites.front_shiny && (
+                        <View>
+                        <Text style={[styles.lista,{color:this.state.color}]}>Versões</Text>
+                        <View style={styles.version}>
+                            <View style={styles.sprites}>
+                                <Image source={{uri: this.state.pokemon.sprites.front_default}} style={styles.pokemon}/>
+                                <Text style={[styles.legend,{color:this.state.color}]}>Padrão</Text>
+                            </View>
+                            <View style={styles.sprites}>
+                                <Image source={{uri: this.state.pokemon.sprites.front_shiny}} style={styles.pokemon}/>
+                                <Text style={[styles.legend,{color:this.state.color}]}>Shiny</Text>
+                            </View>
                         </View>
-                        <View style={styles.sprites}>
-                            <Image source={{uri: this.state.pokemon.sprites.front_shiny}} style={styles.pokemon}/>
-                            <Text style={[styles.legend,{color:this.state.color}]}>Shiny</Text>
                         </View>
-                    </View>
-                    <Text style={[styles.lista,{color:this.state.color}]}>Lista de movimentos:</Text>
-                    
-                        {this.state.pokemon.moves.map( pokemon => 
+                    )}
+                    {this.state.pokemon.moves && (
+                        <View>
+                            <Text style={[styles.lista,{color:this.state.color}]}>Lista de movimentos:</Text>
+                            {this.state.pokemon.moves.map( pokemon => 
                             <View style={[styles.section,styles.atq]} key={pokemon.move.name}>
                                 <Text style={[styles.moves,{fontWeight: 'bold',color:this.state.color}]}>{pokemon.move.name}</Text>
                                 <Text style={[styles.moves,styles.level,{color:this.state.color}]}>Pode aprender no nivel: <Text style={styles.number}>{pokemon.version_group_details[0].level_learned_at}</Text></Text>
                             </View>
-                        )}
+                            )}
+                        </View>
+                    )}
+                        
                     
                 </ScrollView>
                 <AdMobBanner
