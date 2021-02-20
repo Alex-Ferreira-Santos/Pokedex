@@ -84,11 +84,13 @@ class Main extends Component{
         })})
       }
     }else{
-      this.setState({pokemons: [...this.state.pokemons,...data].sort((pokemon1,pokemon2) => {
-        const pokemonNumber1 = pokemon1.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-        const pokemonNumber2 = pokemon2.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
-        return pokemonNumber1 - pokemonNumber2
-      })})
+      if(this.state.pokemons.findIndex(pokemon => pokemon.name === data[0].name) === -1){
+        this.setState({pokemons: [...this.state.pokemons,...data].sort((pokemon1,pokemon2) => {
+          const pokemonNumber1 = pokemon1.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+          const pokemonNumber2 = pokemon2.url.replace('https://pokeapi.co/api/v2/pokemon/','').replace('/','');
+          return pokemonNumber1 - pokemonNumber2  
+        })})
+      }
     } 
   }
 
