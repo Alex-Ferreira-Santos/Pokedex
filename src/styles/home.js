@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet,Dimensions} from 'react-native'
+
+const width = Dimensions.get('screen').width
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +18,9 @@ const styles = StyleSheet.create({
         borderRadius: 50
     },
     img:{
-        marginVertical: 50
+        marginVertical: 50,
+        width: width/2,
+        height:width/2
     },
     button:{
         backgroundColor:'#c21e0c',
@@ -33,14 +37,16 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     mode:{
-        borderRadius: 50,
-        padding: 10,
+        borderRadius: 40,
+        padding: 5,
         position: 'absolute',
         top:20,
         right: 20,
         borderColor:'gray',
-        borderWidth:1
-    }
+        borderWidth:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })
 
 export default styles
