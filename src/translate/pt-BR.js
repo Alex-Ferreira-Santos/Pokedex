@@ -3,5 +3,21 @@ export default pt = {
     buttonHome: 'Seguir',
     loading: 'Carregando',
     pokemonLoading: 'Carregando mais pokémons',
-    label: 'Selecione o elemento para filtrar os pokémons'
+    label: 'Nenhum elemento selecionado',
+    grass: 'Grama',
+    poison: 'Veneno',
+    fire: 'Fogo',
+    flying: 'Voador',
+    water: 'Água',
+    bug: 'Inseto',
+    normal: 'Normal',
+    electric: 'Eletrico',
+    ground: 'Terra',
+    fairy: 'Fada',
+    psychic: 'Psiquico',
+    rock: 'Pedra',
+    ice: 'Gelo',
+    dragon: 'Dragão',
+    steel: 'Metal',
+    dark: 'Sombrio'
 }

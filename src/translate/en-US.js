@@ -3,5 +3,21 @@ export default en = {
     buttonHome: "Go on",
     loading: "Loading",
     pokemonLoading: "Loading pokémon",
-    label: "Select the element to filter the Pokémon"
+    label: "No elements selected",
+    grass: 'Grass',
+    poison: 'Poison',
+    fire: 'Fire',
+    flying: 'Flying',
+    water: 'Water',
+    bug: 'Bug',
+    normal: 'Normal',
+    electric: 'Electric',
+    ground: 'Ground',
+    fairy: 'Fairy',
+    psychic: 'Psychic',
+    rock: 'Rock',
+    ice: 'Ice',
+    dragon: 'Dragon',
+    steel: 'Steel',
+    dark: 'Dark'
 }
