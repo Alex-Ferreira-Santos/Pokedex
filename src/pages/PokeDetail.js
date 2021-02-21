@@ -4,6 +4,7 @@ import styles from '../styles/pokeDetail'
 import LinearGradient from 'react-native-linear-gradient'
 import ArrowLeft from '../img/arrow.png'
 import {AdMobBanner} from 'react-native-admob'
+import {translate} from '../translate/i18n'
 
 class PokeDetail extends Component {
     constructor(props) {
@@ -109,7 +110,7 @@ class PokeDetail extends Component {
         if(this.state.pokemon.abilities === undefined){
             return(
                 <View style={{justifyContent: 'center',alignItems: 'center',flex:1,backgroundColor:this.state.backgroundColor}}>
-                    <Text style={{fontSize: 50,marginBottom: 10,color: this.state.color}}>Carregando</Text>
+                    <Text style={{fontSize: 50,marginBottom: 10,color: this.state.color}}>{translate('loading')}</Text>
                     <ActivityIndicator color={this.state.color} size='large'/>
                 </View>
             )
@@ -128,7 +129,7 @@ class PokeDetail extends Component {
                 <ScrollView contentContainerStyle={[styles.scrollView,{backgroundColor:this.state.backgroundColor}]}>
                     <Text style={[styles.name,{color:this.state.color}]}>{params.name}</Text>
                     <View style={styles.section}>
-                        <Text style={[styles.text,{color:this.state.color}]}>Elementos: </Text>
+                        <Text style={[styles.text,{color:this.state.color}]}>{translate('types')}: </Text>
                         {params.element.map( elemento => {
                             switch(elemento){
                                 case 'grass':
@@ -147,7 +148,7 @@ class PokeDetail extends Component {
                                     this.state.element = styles.dragon
                                     return(                                       
                                         <LinearGradient colors={['#2029EC','#FF0000']} style={[styles.element,{marginLeft: 20}]}  key={elemento}>
-                                            <Text style={[{fontSize: 20},this.state.element]} key={elemento}>{elemento}</Text>
+                                            <Text style={[{fontSize: 20},this.state.element]} key={elemento}>{translate(elemento)}</Text>
                                         </LinearGradient>
                                     )
                                 case 'water':{
@@ -204,21 +205,21 @@ class PokeDetail extends Component {
                                 }
                             }
                             return (
-                                <Text key={elemento} style={[styles.text,styles.element,this.state.element]}>{elemento}</Text>
+                                <Text key={elemento} style={[styles.text,styles.element,this.state.element]}>{translate(elemento)}</Text>
                             )
                         
                         })} 
                     </View>
                     <View style={styles.section}>
-                        <Text style={[styles.text,{color:this.state.color}]}>Experiência básica ao derrotar: <Text style={styles.number}>{this.state.pokemon.base_experience}</Text></Text>
+                        <Text style={[styles.text,{color:this.state.color}]}>{translate('xp')}: <Text style={styles.number}>{this.state.pokemon.base_experience}</Text></Text>
                     </View>
                     <View style={styles.section}>
-                        <Text style={[styles.text,{color:this.state.color}]}>Altura do pokémon: <Text style={styles.number}>{this.state.pokemon.height / 10}</Text> metros</Text>
+                        <Text style={[styles.text,{color:this.state.color}]}>{translate('height')}: <Text style={styles.number}>{this.state.pokemon.height / 10}</Text> {translate('meter')}</Text>
                     </View>
                     <View style={styles.section}>
-                        <Text style={[styles.text,{color:this.state.color}]}>Peso do pokémon: <Text style={styles.number}>{this.state.pokemon.weight / 10}</Text> quilos</Text>
+                        <Text style={[styles.text,{color:this.state.color}]}>{translate('weight')}: <Text style={styles.number}>{this.state.pokemon.weight / 10}</Text> {translate('kilos')}</Text>
                     </View>
-                    <Text style={[styles.lista,{color:this.state.color}]}>Habilidades</Text>
+                    <Text style={[styles.lista,{color:this.state.color}]}>{translate('abilities')}</Text>
                     
                         {this.state.pokemon.abilities.map( pokemon => {
                             return(
@@ -228,15 +229,15 @@ class PokeDetail extends Component {
                     
                     <Text style={[styles.lista,{color:this.state.color}]}>Status</Text>
                     {this.state.pokemon.stats.map(pokemon => 
-                        <Text key={pokemon.stat.name} style={[styles.stats,{color:this.state.color}]}>quantidade de <Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> inicial: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
+                        <Text key={pokemon.stat.name} style={[styles.stats,{color:this.state.color}]}>{translate(amount)}<Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> {translate('inicial')}: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
                     )}
                     {this.state.pokemon.sprites.front_shiny && (
                         <View>
-                        <Text style={[styles.lista,{color:this.state.color}]}>Versões</Text>
+                        <Text style={[styles.lista,{color:this.state.color}]}>{translate('version')}</Text>
                         <View style={styles.version}>
                             <View style={styles.sprites}>
                                 <Image source={{uri: this.state.pokemon.sprites.front_default}} style={styles.pokemon}/>
-                                <Text style={[styles.legend,{color:this.state.color}]}>Padrão</Text>
+                                <Text style={[styles.legend,{color:this.state.color}]}>{translate('default')}</Text>
                             </View>
                             <View style={styles.sprites}>
                                 <Image source={{uri: this.state.pokemon.sprites.front_shiny}} style={styles.pokemon}/>
@@ -247,11 +248,11 @@ class PokeDetail extends Component {
                     )}
                     {this.state.pokemon.moves && (
                         <View>
-                            <Text style={[styles.lista,{color:this.state.color}]}>Lista de movimentos:</Text>
+                            <Text style={[styles.lista,{color:this.state.color}]}>{translate('move')}:</Text>
                             {this.state.pokemon.moves.map( pokemon => 
                             <View style={[styles.section,styles.atq]} key={pokemon.move.name}>
                                 <Text style={[styles.moves,{fontWeight: 'bold',color:this.state.color}]}>{pokemon.move.name}</Text>
-                                <Text style={[styles.moves,styles.level,{color:this.state.color}]}>Pode aprender no nivel: <Text style={styles.number}>{pokemon.version_group_details[0].level_learned_at}</Text></Text>
+                                <Text style={[styles.moves,styles.level,{color:this.state.color}]}>{translate('learn')}: <Text style={styles.number}>{pokemon.version_group_details[0].level_learned_at}</Text></Text>
                             </View>
                             )}
                         </View>

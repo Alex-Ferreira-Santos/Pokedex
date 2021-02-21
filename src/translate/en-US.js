@@ -19,5 +19,18 @@ export default en = {
     ice: 'Ice',
     dragon: 'Dragon',
     steel: 'Steel',
-    dark: 'Dark'
+    dark: 'Dark',
+    types: 'Types',
+    xp: 'Basic experience when defeating',
+    height: "Pokémon's height",
+    meter: 'meter',
+    weight: "Pokémon's weight",
+    kilos: 'kilos',
+    abilities: 'abilities',
+    amount: 'amount of initial',
+    inicial: '',
+    version: 'version',
+    default: 'default',
+    moves: 'Moves',
+    learn: 'Can learn at the level'
 }

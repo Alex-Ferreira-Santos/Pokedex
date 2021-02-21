@@ -19,5 +19,18 @@ export default pt = {
     ice: 'Gelo',
     dragon: 'Dragão',
     steel: 'Metal',
-    dark: 'Sombrio'
+    dark: 'Sombrio',
+    types: 'Elementos',
+    xp: 'Experiência básica ao derrotar',
+    height: 'Altura do pokémon',
+    meter: 'metros',
+    weight: 'Peso do pokémon',
+    kilos: 'quilos',
+    abilities: 'habilidades',
+    amount: 'quantidade de ',
+    inicial: 'inicial',
+    version: 'versões',
+    default: 'padrão',
+    moves: 'Lista de movimentos',
+    learn: 'Pode aprender no nivel'
 }
