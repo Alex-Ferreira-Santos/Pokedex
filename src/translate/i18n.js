@@ -22,7 +22,6 @@ I18n.translations = {
 const setLanguageToI18n = () => {
     const language = getDeviceLanguage()
     const translateNormalize = normalizeTranslate[language]
-    console.log(translateNormalize)
     const iHaveThisLanguage = I18n.translations.hasOwnProperty(translateNormalize)
     iHaveThisLanguage ? I18n.locale = translateNormalize : I18n.defaultLocale = 'en_US'
 }

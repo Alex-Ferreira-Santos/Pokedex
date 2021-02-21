@@ -5,6 +5,7 @@ import styles from '../styles/main'
 import RNPickerSelect from 'react-native-picker-select'
 import pickerSelectStyles from '../styles/pickerSelectStyle'
 import {AdMobBanner} from 'react-native-admob'
+import {translate} from '../translate/i18n'
 
 class Main extends Component{ 
   constructor(props){
@@ -119,7 +120,7 @@ class Main extends Component{
     }
     return(
       <View style={{flex:1}}>
-        <Text>Carregando mais pokémons</Text>
+        <Text>{translate('pokemonLoading')}</Text>
         <ActivityIndicator size="large" color={this.state.color}/>
       </View>
     )
@@ -129,7 +130,7 @@ class Main extends Component{
     if(this.state.pokemons.length === 0){
       return(
         <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:this.state.background}}>
-          <Text style={{fontSize: 50,margin: 20,color:this.state.color}}>Carregando</Text>
+          <Text style={{fontSize: 50,margin: 20,color:this.state.color}}>{translate('loading')}</Text>
           <ActivityIndicator size="large" color={this.state.color}/>
         </View>
       )
@@ -141,7 +142,7 @@ class Main extends Component{
               <RNPickerSelect
                 useNativeAndroidPickerStyle={false}
                 placeholder={{
-                    label: 'Selecione o elemento para filtrar os pokémons',
+                    label: translate('label'),
                     value: '',
                     color: '#9EA0A4',
                 }}
@@ -187,7 +188,7 @@ class Main extends Component{
           </View>     
           <AdMobBanner
             adSize="fullBanner"
-            adUnitID="ca-app-pub-8189428112004694/2341890408"
+            adUnitID="ca-app-pub-3940256099942544/6300978111"
             onAdLoaded={()=>{
               const height = Dimensions.get('screen').height
               this.setState({height: height - 138});
