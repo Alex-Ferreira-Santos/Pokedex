@@ -4,6 +4,7 @@ import styles from '../styles/home'
 import pokebola from '../img/pokeball.png'
 import pokedex from '../img/Simpledex.png'
 import Icon from 'react-native-vector-icons/Ionicons'
+import {translate} from '../translate/i18n'
 
 class HomePage extends Component {
     constructor(props){
@@ -44,10 +45,10 @@ class HomePage extends Component {
                         <Icon name={this.state.name} color={this.state.color} size={50}/>
                     </TouchableHighlight>
                     <Image source={pokedex} />
-                    <Text style={[styles.text,{color:this.state.textColor}]}>Veja os dados de seus pokémons favoritos</Text>
+                    <Text style={[styles.text,{color:this.state.textColor}]}>{translate('descriptionHome')}</Text>
                     <Image source={pokebola} style={styles.img}/>
                     <TouchableHighlight style={styles.button} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0,theme: this.state.theme})}} underlayColor='#B9AC36'>
-                        <Text style={styles.buttonText}>Seguir</Text>
+                        <Text style={styles.buttonText}>{translate('buttonHome')}</Text>
                     </TouchableHighlight>
                 </View>
             </View>

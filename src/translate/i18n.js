@@ -14,7 +14,7 @@ const getDeviceLanguage = () => {
     return Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocate : NativeModules.I18nManager.localeIdentifier
 }
 
-I18n.translate = {
+I18n.translations = {
     'en_US': en,
     'pt_BR': pt
 }
@@ -22,10 +22,13 @@ I18n.translate = {
 const setLanguageToI18n = () => {
     const language = getDeviceLanguage()
     const translateNormalize = normalizeTranslate[language]
+    console.log(translateNormalize)
     const iHaveThisLanguage = I18n.translations.hasOwnProperty(translateNormalize)
     iHaveThisLanguage ? I18n.locale = translateNormalize : I18n.defaultLocale = 'en_US'
 }
 
 setLanguageToI18n()
 
-export const translate = key => I18n.t(key)
+export const translate = key => {
+    return I18n.t(key)
+}
