@@ -26,11 +26,11 @@ export default en = {
     meter: 'meter',
     weight: "Pokémon's weight",
     kilos: 'kilos',
-    abilities: 'abilities',
-    amount: 'amount of initial',
+    abilities: 'Abilities',
+    amount: 'amount of initial ',
     inicial: '',
     version: 'version',
     default: 'default',
     moves: 'Moves',
-    learn: 'Can learn at the level'
+    learn: 'Can learn at the level',
 }

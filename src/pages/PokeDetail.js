@@ -229,7 +229,7 @@ class PokeDetail extends Component {
                     
                     <Text style={[styles.lista,{color:this.state.color}]}>Status</Text>
                     {this.state.pokemon.stats.map(pokemon => 
-                        <Text key={pokemon.stat.name} style={[styles.stats,{color:this.state.color}]}>{translate(amount)}<Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> {translate('inicial')}: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
+                        <Text key={pokemon.stat.name} style={[styles.stats,{color:this.state.color}]}>{translate('amount')}<Text style={{fontWeight:'bold'}}>{pokemon.stat.name}</Text> {translate('inicial')}: <Text style={styles.number}>{pokemon.base_stat}</Text></Text>
                     )}
                     {this.state.pokemon.sprites.front_shiny && (
                         <View>
@@ -248,7 +248,7 @@ class PokeDetail extends Component {
                     )}
                     {this.state.pokemon.moves && (
                         <View>
-                            <Text style={[styles.lista,{color:this.state.color}]}>{translate('move')}:</Text>
+                            <Text style={[styles.lista,{color:this.state.color}]}>{translate('moves')}:</Text>
                             {this.state.pokemon.moves.map( pokemon => 
                             <View style={[styles.section,styles.atq]} key={pokemon.move.name}>
                                 <Text style={[styles.moves,{fontWeight: 'bold',color:this.state.color}]}>{pokemon.move.name}</Text>
