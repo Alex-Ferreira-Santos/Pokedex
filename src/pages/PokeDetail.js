@@ -16,7 +16,6 @@ class PokeDetail extends Component {
             color: 'black',
             backgroundColor: 'white',
             height: '',
-            modalVisible: false
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
         this.setBackground = this.setBackground.bind(this)
@@ -121,35 +120,13 @@ class PokeDetail extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor={this.state.background.backgroundColor}/>
-                <Modal 
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {Alert.alert("Modal has been closed.")}}>
-                        <View style={styles.modal}>
-                            <View style={styles.popup}>
-                                <Text style={styles.title}>Gostou do aplicativo?</Text>
-                                <Text style={styles.opnion}>Deixe uma avaliação para sabermos sua opnião</Text>
-                                <View style={styles.button}>
-                                    <TouchableHighlight style={styles.back} onPress={() =>{this.setState({modalVisible:!this.state.modalVisible})}} underlayColor='#EEEEEE'>
-                                        <Text style={styles.buttonText}>Agora não</Text>
-                                    </TouchableHighlight>
-                                    <TouchableHighlight style={styles.rate} onPress={() =>{this.setState({modalVisible:!this.state.modalVisible})}} underlayColor='#00AEE5'>
-                                        <Text style={styles.buttonText}>Avaliar</Text>
-                                    </TouchableHighlight>
-                                </View>
-                            </View>
-                           
-                        </View>
-                        
-                </Modal>
                 <View style={[styles.imageBack,this.state.background]}>
-                    <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0})}} underlayColor='#c4c4c4'>
+                    <TouchableHighlight style={styles.goback} onPress={()=>{this.props.navigation.navigate('Main',{inicial: 0,rate:true})}} underlayColor='#c4c4c4'>
                         <Image source={ArrowLeft}/>
                     </TouchableHighlight>
                     <Image source={{uri: params.img}} style={styles.img}/>
                 </View>
-                <ScrollView contentContainerStyle={[styles.scrollView,{backgroundColor:this.state.backgroundColor}]} onScroll={()=>{this.setState({modalVisible: true})}}>
+                <ScrollView contentContainerStyle={[styles.scrollView,{backgroundColor:this.state.backgroundColor}]}>
                     <Text style={[styles.name,{color:this.state.color}]}>{params.name}</Text>
                     <View style={styles.section}>
                         <Text style={[styles.text,{color:this.state.color}]}>{translate('types')}: </Text>
