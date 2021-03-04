@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         justifyContent:'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingBottom: 3
     },
     scrollView:{
