@@ -214,7 +214,7 @@ class Main extends Component{
               />
           </View>     
           <AdMobBanner
-            adSize="fullBanner"
+            adSize="smartBanner"
             adUnitID="ca-app-pub-8189428112004694/2341890408"
             onAdLoaded={()=>{
               const height = Dimensions.get('screen').height

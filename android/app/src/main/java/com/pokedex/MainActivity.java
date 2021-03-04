@@ -1,4 +1,4 @@
-package com.pokedex;
+package com.simpledex;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
