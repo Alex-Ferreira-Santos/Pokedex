@@ -261,7 +261,7 @@ class PokeDetail extends Component {
                     
                 </ScrollView>
                 <AdMobBanner
-                    adSize="fullBanner"
+                    adSize="smartBanner"
                     adUnitID="ca-app-pub-8189428112004694/6656964968"
                     testDevices={[AdMobBanner.simulatorId]}
                     style={styles.ad}
