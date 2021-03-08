@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableNativeFeedback} from 'react-native'
+import {View,Text,Image,TouchableNativeFeedback,ActivityIndicator} from 'react-native'
 import styles from '../styles/pokemon'
 import LinearGradient from 'react-native-linear-gradient'
 import {translate} from '../translate/i18n'
@@ -13,7 +13,6 @@ class Pokemon extends Component {
             tipos: [],
             name: '',
             id: 0,
-            imageNotShow:[412,413,421,492,585,586,641,642,648,647,718,720,741,746,774,778,849,875,877,893,895,898,10001,10002],
             imagem: ''
         }
         this.carregaPokemon = this.carregaPokemon.bind(this)
@@ -118,19 +117,19 @@ class Pokemon extends Component {
             this.setState({tipos: data})
             this.setState({name: name})
             this.setState({id: id})
-            if(this.state.imageNotShow.includes(id)){
-                this.setState({imagem: imagem})
-            }else{
-                this.setState({imagem:`https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png` })
-            }
+            this.setState({imagem: imagem})
         }
         
     }
 
     render() {
         if(this.state.imagem === ''){
-            this.state.imagem = `https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`
-        }
+            return(
+                <View style={[styles.container,this.state.background]}>
+                    <ActivityIndicator size="large" color='black'/>
+                </View>
+            )
+        }else{
             return (
                 <TouchableNativeFeedback onPress={()=>{this.props.funcao(this.state.imagem,this.state.name,this.state.tipos,this.props.id)}}>
                     <View style={[styles.container,this.state.background]}>
@@ -222,7 +221,7 @@ class Pokemon extends Component {
                     </View>
                 </TouchableNativeFeedback>
             )
-        
+        }
     }
 }
 
