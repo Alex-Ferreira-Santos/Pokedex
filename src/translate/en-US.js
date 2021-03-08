@@ -33,4 +33,8 @@ export default en = {
     default: 'default',
     moves: 'Moves',
     learn: 'Can learn at the level',
+    like: 'Did you like the app?',
+    opnion: 'Rate our app so we know your opinion',
+    notNow: 'Not now',
+    rate: 'Rate the app'
 }

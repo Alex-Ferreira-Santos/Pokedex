@@ -145,21 +145,21 @@ class Main extends Component{
             visible={params.rate}>
               <View style={styles.modal}>
                 <View style={styles.popup}>
-                  <Text style={styles.title}>Gostou do aplicativo?</Text>
-                  <Text style={styles.opnion}>Deixe uma avaliação para sabermos sua opnião</Text>
+                  <Text style={styles.title}>{translate('like')}</Text>
+                  <Text style={styles.opnion}>{translate('opnion')}</Text>
                   <View style={styles.button}>
                     <TouchableHighlight style={styles.back} onPress={() =>{
                       params.rate = !params.rate
                       this.setState({modalVisible:!this.state.modalVisible})
                       }} underlayColor='#EEEEEE'>
-                      <Text style={styles.buttonText}>Agora não</Text>
+                      <Text style={styles.buttonText}>{translate('notNow')}</Text>
                     </TouchableHighlight>
                     <TouchableHighlight style={styles.rate} onPress={() =>{
                       params.rate = !params.rate
                       Linking.openURL('https://play.google.com/')
                       this.setState({modalVisible:!this.state.modalVisible})}
                       } underlayColor='#00AEE5'>
-                      <Text style={styles.buttonText}>Avaliar</Text>
+                      <Text style={styles.buttonText}>{translate('rate')}</Text>
                     </TouchableHighlight>
                   </View>
                 </View>     

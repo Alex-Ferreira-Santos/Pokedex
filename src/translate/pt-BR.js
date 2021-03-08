@@ -33,4 +33,8 @@ export default pt = {
     default: 'padrão',
     moves: 'Lista de movimentos',
     learn: 'Pode aprender no nivel',
+    like: 'Gostou do aplicativo?',
+    opnion: 'Deixe uma avaliação para sabermos sua opnião',
+    notNow: 'Agora não',
+    rate: 'Avaliar'
 }
