@@ -18,7 +18,6 @@ class Main extends Component{
       color: 'black',
       background: '',
       height: '100%',
-      modalVisible: true
     }
     this.setPokemons = this.setPokemons.bind(this)
     this.carregaPokemons = this.carregaPokemons.bind(this)
@@ -139,32 +138,6 @@ class Main extends Component{
     const params = this.props.route.params
     return (
         <View style={styles.container}>
-          {this.state.modalVisible && (<Modal 
-            animationType="slide"
-            transparent={true}
-            visible={params.rate}>
-              <View style={styles.modal}>
-                <View style={styles.popup}>
-                  <Text style={styles.title}>{translate('like')}</Text>
-                  <Text style={styles.opnion}>{translate('opnion')}</Text>
-                  <View style={styles.button}>
-                    <TouchableHighlight style={styles.back} onPress={() =>{
-                      params.rate = !params.rate
-                      this.setState({modalVisible:!this.state.modalVisible})
-                      }} underlayColor='#EEEEEE'>
-                      <Text style={styles.buttonText}>{translate('notNow')}</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight style={styles.rate} onPress={() =>{
-                      params.rate = !params.rate
-                      Linking.openURL('https://play.google.com/')
-                      this.setState({modalVisible:!this.state.modalVisible})}
-                      } underlayColor='#00AEE5'>
-                      <Text style={styles.buttonText}>{translate('rate')}</Text>
-                    </TouchableHighlight>
-                  </View>
-                </View>     
-              </View>                    
-          </Modal>)}
           <View style={[styles.inside,{backgroundColor:this.state.background,height:this.state.height}]}>
             <View style={styles.section}>
               <RNPickerSelect
