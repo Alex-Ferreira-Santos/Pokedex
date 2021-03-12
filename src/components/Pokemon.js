@@ -105,11 +105,7 @@ class Pokemon extends Component {
                 this.setState({tipos: data})
                 this.setState({name:name})
                 this.setState({id: id})
-                if(this.state.imageNotShow.includes(id)){
-                    this.setState({imagem: imagem})
-                }else{
-                    this.setState({imagem:`https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png` })
-                }
+                this.setState({imagem: imagem})
                 
             }
             return
