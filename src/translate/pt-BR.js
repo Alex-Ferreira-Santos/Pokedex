@@ -14,6 +14,7 @@ export default pt = {
     electric: 'Eletrico',
     ground: 'Terra',
     fairy: 'Fada',
+    fighting: 'Lutador',
     psychic: 'Psiquico',
     rock: 'Pedra',
     ice: 'Gelo',

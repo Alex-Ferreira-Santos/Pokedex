@@ -2,7 +2,6 @@ package com.simpledex;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
-import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends ReactActivity {
 
@@ -17,6 +16,6 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
-  MobileAds.initialize(this, "ca-app-pub-8189428112004694~8983961007");
+  
 }
 }

@@ -14,6 +14,7 @@ export default en = {
     electric: 'Electric',
     ground: 'Ground',
     fairy: 'Fairy',
+    fighting: 'Fighting',
     psychic: 'Psychic',
     rock: 'Rock',
     ice: 'Ice',

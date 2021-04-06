@@ -1,10 +1,9 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList,ActivityIndicator,Dimensions,Modal,TouchableHighlight, Linking} from 'react-native'
+import {View,Text,FlatList,ActivityIndicator} from 'react-native'
 import Pokemon from '../components/Pokemon'
 import styles from '../styles/main'
 import RNPickerSelect from 'react-native-picker-select'
 import pickerSelectStyles from '../styles/pickerSelectStyle'
-import {AdMobBanner} from 'react-native-admob'
 import {translate} from '../translate/i18n'
 
 class Main extends Component{ 
@@ -166,6 +165,7 @@ class Main extends Component{
                     { label: translate('electric'), value: 'electric'},
                     { label: translate('ground'), value: 'ground'},
                     { label: translate('fairy'), value: 'fairy'},
+                    { label: translate('fighting'), value: 'fighting'},
                     { label: translate('psychic'), value: 'psychic'},
                     { label: translate('rock'), value: 'rock'},
                     { label: translate('ice'), value: 'ice'},
@@ -186,16 +186,6 @@ class Main extends Component{
               ListFooterComponent={this.loading}
               />
           </View>     
-          <AdMobBanner
-            adSize="smartBanner"
-            adUnitID="ca-app-pub-8189428112004694/2341890408"
-            onAdLoaded={()=>{
-              const height = Dimensions.get('screen').height
-              this.setState({height: height - 138});
-            }}
-            testDevices={[AdMobBanner.simulatorId]}
-            style={styles.ad}
-          />
         </View>
     )
   }

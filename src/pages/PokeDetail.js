@@ -3,7 +3,6 @@ import {View,Text,Image,ScrollView,ActivityIndicator,TouchableHighlight,StatusBa
 import styles from '../styles/pokeDetail'
 import LinearGradient from 'react-native-linear-gradient'
 import ArrowLeft from '../img/arrow.png'
-import {AdMobBanner} from 'react-native-admob'
 import {translate} from '../translate/i18n'
 
 class PokeDetail extends Component {
@@ -260,12 +259,6 @@ class PokeDetail extends Component {
                         
                     
                 </ScrollView>
-                <AdMobBanner
-                    adSize="smartBanner"
-                    adUnitID="ca-app-pub-8189428112004694/6656964968"
-                    testDevices={[AdMobBanner.simulatorId]}
-                    style={styles.ad}
-                />
             </View>
         )
     }
